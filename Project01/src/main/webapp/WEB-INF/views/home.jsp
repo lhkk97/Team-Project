@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>
@@ -6,11 +8,12 @@
 </head>
 <body>
 <div class="wrap">
-	<!-- header 위치 -->
+	<!-- header ìì¹ -->
+	안녕하세요 이현경이에오
 	<section>
 		<P>  The time on the server is ${serverTime}. </P>
 	</section>
-	<!-- footer 위치 -->
+	<!-- footer ìì¹ -->
 </div>
 </body>
 </html>
