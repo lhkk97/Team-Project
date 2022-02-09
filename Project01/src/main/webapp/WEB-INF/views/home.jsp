@@ -5,10 +5,12 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
+<div class="wrap">
+	<!-- header 위치 -->
+	<section>
+		<P>  The time on the server is ${serverTime}. </P>
+	</section>
+	<!-- footer 위치 -->
+</div>
 </body>
 </html>
