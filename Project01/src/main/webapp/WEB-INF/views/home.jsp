@@ -8,22 +8,16 @@
 </head>
 <body>
 <div class="wrap">
-<<<<<<< HEAD
-	<!-- header 영역 -->
-	안녕하세요 이현경이에오
-=======
 	<!-- header 영역 -->
 	안녕하세요 이현경이에오 저는 윤주희입니당
 
->>>>>>> branch 'minjae' of https://github.com/lhkk97/Team-Project.git
 	<section>
 		<P>  The time on the server is ${serverTime}. </P>
 	</section>
-<<<<<<< HEAD
-	<!-- footer 영역 -->
-=======
+
+
 	<!-- footer 영역-->
->>>>>>> branch 'minjae' of https://github.com/lhkk97/Team-Project.git
+
 </div>
 </body>
 </html>
