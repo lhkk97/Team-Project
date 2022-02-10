@@ -14,7 +14,7 @@
 		<p>  The time on the server is ${serverTime}. </p>
 	</section>
 	<section>
-		여기는 지도가 들어가면 될것같아요
+		여기는 지도가 들어가면 될것같아요~~
 	</section>
 	<!-- footer 영역 -->
 </div>
