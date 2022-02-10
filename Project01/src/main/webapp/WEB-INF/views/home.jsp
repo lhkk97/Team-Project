@@ -7,21 +7,16 @@
 <head>
 	<title> - Home - </title>
 	<link rel="stylesheet" href="${path}/resources/css/style.css"> 
-	<style>
-		h1 {font-size:inherit;}
-	</style>
 </head>
 <body>
 <div class="wrap">
 	<%@include file ="header.jsp" %>
-
 	<section>
+	
 		<P>  The time on the server is ${serverTime}. </P>
+	
 	</section>
-
-
 	<!-- footer 영역-->
-
 </div>
 </body>
 </html>
