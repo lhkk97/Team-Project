@@ -10,11 +10,16 @@
 	<div>
 		<ul>
 			<li><label for="userid">아이디</label></li>
-			<li><input type="text" id="userid"></li>
+			
+			<li><input type="number" id="mobile"></li>
 		</ul>
 		<ul>
+			<li>아이디</li>
+			<li><input type="text" id="userid"></li>
 			<li>비밀번호</li>
 			<li><input type="password" id="passcode"></li>
+			<li>모바일</li>
+			<li><input type="number" id="mobile"></li>
 		</ul>
 	</div>
 </body>
