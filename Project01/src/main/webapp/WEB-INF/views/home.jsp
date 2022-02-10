@@ -4,19 +4,16 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title> - Home - </title>
 </head>
 <body>
 <div class="wrap">
-	<!-- header 영역 -->
+	<!-- header 영역 -->
 	안녕하세요 이현경이에오
 	<section>
-		<p>  The time on the server is ${serverTime}. </p>
+		<P>  The time on the server is ${serverTime}. </P>
 	</section>
-	<section>
-		여기는 지도가 들어가면 될것같아요~~
-	</section>
-	<!-- footer 영역 -->
+	<!-- footer 영역 -->
 </div>
 </body>
 </html>
