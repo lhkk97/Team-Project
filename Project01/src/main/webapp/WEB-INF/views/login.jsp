@@ -9,8 +9,12 @@
 <body>
 	<div>
 		<ul>
-			<li>아이디</li>
-			<li><input type="text"></li>
+			<li><label for="userid">아이디</label></li>
+			<li><input type="text" id="userid"></li>
+		</ul>
+		<ul>
+			<li>비밀번호</li>
+			<li><input type="password" id="passcode"></li>
 		</ul>
 	</div>
 </body>
