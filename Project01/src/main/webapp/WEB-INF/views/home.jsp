@@ -4,17 +4,17 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title> - Home - </title>
 </head>
 <body>
 <div class="wrap">
-	<!-- header ìì¹ -->
+	<!-- header 영역 -->
 	안녕하세요 이현경이에오
 	branch
 	<section>
 		<P>  The time on the server is ${serverTime}. </P>
 	</section>
-	<!-- footer ìì¹ -->
+	<!-- footer 영역-->
 </div>
 </body>
 </html>
