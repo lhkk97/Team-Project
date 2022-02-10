@@ -8,12 +8,15 @@
 </head>
 <body>
 <div class="wrap">
-	<!-- header ìì¹ -->
+	<!-- header 영역 -->
 	안녕하세요 이현경이에오
 	<section>
-		<P>  The time on the server is ${serverTime}. </P>
+		<p>  The time on the server is ${serverTime}. </p>
 	</section>
-	<!-- footer ìì¹ -->
+	<section>
+		여기는 지도가 들어가면 될것같아요
+	</section>
+	<!-- footer 영역 -->
 </div>
 </body>
 </html>
