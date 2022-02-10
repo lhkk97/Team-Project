@@ -1,15 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
 	<title> - Home - </title>
+	<link rel="stylesheet" href="${path}/resources/css/style.css"> 
+	<style>
+		h1 {font-size:inherit;}
+	</style>
 </head>
 <body>
 <div class="wrap">
-	<!-- header 영역 -->
-	안녕하세요 이현경이에오 저는 윤주희입니당s
+	<%@include file ="header.jsp" %>
 
 	<section>
 		<P>  The time on the server is ${serverTime}. </P>
