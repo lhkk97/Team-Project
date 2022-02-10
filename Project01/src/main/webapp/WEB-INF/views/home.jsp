@@ -17,6 +17,8 @@
 		<P>  The time on the server is ${serverTime}. </P>
 	</section>
 	<!-- footer 영역-->
+	
+	수정 test 
 </div>
 </body>
 </html>
