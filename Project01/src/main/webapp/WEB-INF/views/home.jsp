@@ -9,11 +9,11 @@
 <body>
 <div class="wrap">
 	<!-- header 영역 -->
-	안녕하세요 이현경이에오
+	안녕하세요 마스터로 들어갑니다~
 	<section>
 		<P>  The time on the server is ${serverTime}. </P>
 	</section>
-	<!-- footer 영역 -->
+	<!-- footer 영역-->
 </div>
 </body>
 </html>
