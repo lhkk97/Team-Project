@@ -14,7 +14,7 @@
 		<P>  The time on the server is ${serverTime}. </P>
 	</section>
 	<!-- footer 영역-->
-	master upload testsadfsadf
+	master upload testsadfsadf TEST2
 </div>
 </body>
 </html>
