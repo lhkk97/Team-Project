@@ -9,7 +9,7 @@
 <body>
 <div class="wrap">
 	<!-- header 영역 -->
-	안녕하세요 마스터로 들어갑니다~
+	개인 branch  ->  master 테스트 진행중입니다
 	<section>
 		<P>  The time on the server is ${serverTime}. </P>
 	</section>
