@@ -1,0 +1,13 @@
+@charset "UTF-8";
+* {margin:0; padding:0;}
+a{color:#333;text-decoration:none;}
+li{list-style:none;}
+.fixed:before{content:''; clear:both;}
+
+/* css 시작 */
+
+/* header */
+.top_header{width:100%; max-width:1200px;}
+.top_header ul{float:right;}
+.top_header li{float:left;}
+.header{width:100%; max-width:1200px;}
