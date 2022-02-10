@@ -13,7 +13,7 @@
 	<section>
 		<P>  The time on the server is ${serverTime}. </P>
 	</section>
-	<!-- footer 영역-->
+	<!-- footer 영역-->test1
 </div>
 </body>
 </html>
