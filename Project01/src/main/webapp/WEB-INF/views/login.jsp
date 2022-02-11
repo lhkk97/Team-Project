@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="true" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -13,16 +12,15 @@
 <body>
 <form method=post action="/project/login_check" id=frmLogin>
 	<div class="wrap">
-		<section>
-			<ul>
-				<li><label for="userid">아이디</label></li>
-				<li><input type="text" id="userid" name="userid"></li>
-			</ul>
-			<ul>
-				<li><label for="passcode">비밀번호</label></li>
-				<li><input type="text" id="passcode" name="passcode"></li>
-			</ul>
-		</section>
+		<ul>
+			<li><label for="userid">아이디</label></li>
+			<li><input type="text" id="userid" name="userid"></li>
+			<li><input type=hidden name=user id=user value="${fail_user}"></li>
+		</ul>
+		<ul>
+			<li><label for="passcode">비밀번호</label></li>
+			<li><input type="text" id="passcode" name="passcode"></li>
+		</ul>
 	</div>
 	<div class="wrap">
 		<input type="submit" id=login value="로그인">
@@ -31,6 +29,11 @@
 	</div>
 	<div><a href='/project/signon'>회원가입</a></div>
 </form>
+<c:if test="${fail_user=='fail'}">
+	<script type="text/javascript">
+		alert("로그인에 실패했습니다. 아이디와 비밀번호를 다시 입력해주세요.");
+	</script>
+</c:if>
 </body>
 <script src='https://code.jquery.com/jquery-3.5.0.js'></script>
 <script>

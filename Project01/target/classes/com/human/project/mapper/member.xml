@@ -3,10 +3,10 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.human.project.iMember">
-
 <select id="memberList" resultType="com.human.project.Member">
-	select name,gender,userid,passcode,mobile,login_time,logout_time
-	 from member
+	select a.name, a.gender, a.userid, a.passcode, a.mobile, b.type as member_type, a.login_time, a.logout_time 
+	from member a, membertype b
+	where a.member_type=b.code(+)
 </select>
 <insert id="insertMember">
 	insert into member(name,gender,mobile,userid,passcode)
@@ -22,4 +22,11 @@
 	where userid=#{param3}
 </update>
 
+<!-- 회원관리 dlg list -->
+<select id="dlgList" resultType="com.human.project.Member">
+	select a.userid,a.name,a.gender,a.mobile,b.type as member_type
+	from member a, membertype b
+	where a.member_type=b.code(+)
+	and userid=#{param1}
+</select>
 </mapper>
