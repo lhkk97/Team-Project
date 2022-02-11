@@ -17,7 +17,14 @@
 	<div class="header">
 		<h1 class="logo"><a href="#">LOGO</a></h1>
 		<ul class="fixed">
-			<li><a href="#">객실소개</a></li>
+			<li>
+				<a href="#">객실소개</a>
+<!-- 				<ul class="sub_nav"> -->
+<!-- 					<li><a href="#">roomA</a></li> -->
+<!-- 					<li><a href="#">roomB</a></li> -->
+<!-- 					<li><a href="#">roomC</a></li> -->
+<!-- 				</ul> -->
+			</li>
 			<li><a href="#">예약안내</a></li>
 			<li>
 				<a href="#">커뮤니티</a>
