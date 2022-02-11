@@ -6,16 +6,18 @@ public class Room {
 	private int room_type;
 	private int howmany;
 	private int howmuch;
+	private String type_name;
 	
 	public Room() {
 	}
 
-	public Room(int id, String name, int room_type, int howmany, int howmuch) {
+	public Room(int id, String name, int room_type, int howmany, int howmuch, String type_name) {
 		this.id = id;
 		this.name = name;
 		this.room_type = room_type;
 		this.howmany = howmany;
 		this.howmuch = howmuch;
+		this.type_name = type_name;
 	}
 
 	public int getId() {
@@ -38,6 +40,10 @@ public class Room {
 		return howmuch;
 	}
 
+	public String getType_name() {
+		return type_name;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -57,6 +63,12 @@ public class Room {
 	public void setHowmuch(int howmuch) {
 		this.howmuch = howmuch;
 	}
+
+	public void setType_name(String type_name) {
+		this.type_name = type_name;
+	}
+	
+	
 	
 	
 }

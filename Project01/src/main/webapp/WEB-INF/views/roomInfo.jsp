@@ -12,16 +12,16 @@
 <style>
 </style>
 <body>
-<form action="/project/addRoom" id="frmAddRoom">
+<form action="/project/addInfo" id="frmAddRoom">
 <div class="wrap">
 <%@include file ="header.jsp" %>
 </div>
 <table>
 <caption>객실정보 보기</caption>
 <tr>
-<td><select id=roomInfo name=roomInfo size=10 style='width:500px'></select></td>
-<td>
-            <input type=hidden id=typecode name=typecode>
+<td><select id=selRoom name=selRoom size=10 style='width:500px'></select></td>
+<td>		
+            <input type=hidden id=id name=id>
                <table>
                   <tr>
                      <td align=right>객실명 :</td>
@@ -31,9 +31,6 @@
                      <td align=right>룸타입 :</td>
                      <td><select id=type name=type>
                      	<option value=''>-</option>
-                     	<c:forEach items="${types}" var="rt">
-                     	<option value=${rt.type_code}>${rt.type_name}</option>
-						</c:forEach>                     	
                      	 </select></td>
                   </tr>
                   <tr>
@@ -58,10 +55,37 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script>
 $(document)
+.ready(function(){
+	$.ajax({url:"/project/roomlist",
+		   data:{},
+		   datatype:'json',
+		   method:'get',
+		   beforeSend:function(){},
+		   success:function(txt){
+			   console.log(txt);
+			   for(i=0; i < txt.length; i++){
+				   let str='<option value='+txt[i]['id']+'>'+txt[i]['name']+','+txt[i]['room_type']+','+txt[i]['howmany']+','+txt[i]['howmuch']+','+txt[i]['type_name']+'</option>';
+				$('#selRoom').append(str);   
+			   }
+		   }
+	 });
+	$.ajax({url:"/project/typelist",
+		    data:{},
+		    datatype:'json',
+		    method:'get',
+		    beforeSend:function(){},
+		    success:function(txt){
+		    	console.log(txt);
+		    	for(i=0; i < txt.length; i++){
+		    		let str='<option value='+txt[i]['type_code']+'>'+txt[i]['type_name']+'</option>';
+	        		$('#type').append(str);
+		    	}
+		    }
+	});
+})
 .on('submit','#frmAddRoom',function() {
- 	if ($('input[name=typecode]').val() == ''
- 	 ||	$('input[name=name]').val() == ''
-     || $('input[name=type]').val() == ''
+ 	if ($('input[name=name]').val() == ''
+     || $('input[name=room_type]').val() == ''
      || $('input[name=howmany]').val() == ''
      || $('input[name=howmuch]').val() == '') {
         alert('모든 값이 입력 되어야 합니다.');
@@ -69,24 +93,24 @@ $(document)
               }
           return true;
 })
-.on('click','#btnDelete',function(){
-	let url="/project/deleteRoom?typecode="+$('#typecode').val();
-	console.log(url);
-	document.location=url;
-	return false;
-})
-.on('click','#roomInfo option',function(){
+// .on('click','#btnDelete',function(){
+// 	let url="/project/deleteRoom?typecode="+$('#id').val();
+// 	console.log(url);
+// 	document.location=url;
+// 	return false;
+// })
+.on('click','#selRoom option',function(){
 	console.log($(this).val()+','+$(this).text());
-	$('#roomcode').val($(this).val());
+	$('#id').val($(this).val());
 	let str=$(this).text();
 	let ar=str.split(',');
 	$('input[name=name]').val($.trim(ar[0]));
 	$('input[name=howmany]').val($.trim(ar[2]));
 	$('input[name=howmuch]').val($.trim(ar[3]));
 	let type=$.trim(ar[1]);
-	console.log('type ['+type+']');
-	$('#type').val('');
-	$('#type option').each(function(){ 
+	console.log('room_type ['+type+']');
+	$('#room_type').val('');
+	$('#room_type option').each(function(){ 
         if($(this).text()==type){
            $(this).prop('selected','selected');
            return false;
