@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>-login-</title>
 </head>
-<body>	TEST실행합니다.
+<body>	동시test
 	<div>
 		<ul>
 			<li><label for="userid">아이디</label></li>
