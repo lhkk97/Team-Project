@@ -2,8 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.human.exercise.iJBook">
-	<select id="getBookloom" resultType="com.human.project.Books">
-	</select>
-
+<mapper namespace="com.human.project.iJBook">
+<select id="roomtypeList" resultType="com.human.project.RoomtypeList">
+	select type_code, type_name from roomtype
+</select>
+<select id="bookList" resultType="com.human.project.Books">
+	<![CDATA[
+	select a.id, a.name, a.howmany, a.howmuch, b.type_name from room a, roomtype b
+	where a.room_type = b.type_code and a.room_type = #{room_type} and a.howmany > #{howmany}
+	minus
+	select b.id, b.name, b.howmany, b.howmuch, c.type_name from book a, room b, roomtype c
+	where a.room_id = b.id and b.room_type = c.type_code
+	and (in_date > #{checkin} and in_date < #{checkout} or out_date > #{checkin} and out_date < #{checkout})
+	]]>
+</select>
 </mapper>
