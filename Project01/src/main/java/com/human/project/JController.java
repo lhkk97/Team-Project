@@ -30,14 +30,14 @@ public class JController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/book_done", produces="application/json; charset=utf-8")
-	public String doBook_done(HttpServletRequest hsr, Model model) {
+	@RequestMapping(value = "/getBookList", produces="application/json; charset=utf-8")
+	public String getBookList(HttpServletRequest hsr, Model model) {
 //		int room_type = Integer.parseInt(hsr.getParameter("room_type"));
 //		int howmany = Integer.parseInt(hsr.getParameter("howmany"));
 //		String checkin = hsr.getParameter("checkin");
-//		String checkin = hsr.getParameter("checkout");
+//		String checkout = hsr.getParameter("checkout");
 //		iJBook ibook = sqlSession.getMapper(iJBook.class);
-//		ArrayList<Books> bookList(int room_type, int howmany, String checkin, String checkout);
+//		ArrayList<Books> bookList(room_type, howmany, checkin, checkout);
 //		ArrayList<Books> books = ibook.bookList();
 //		model.addAttribute("books",books);
 //		
