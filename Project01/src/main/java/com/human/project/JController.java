@@ -1,9 +1,6 @@
 package com.human.project;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
 public class JController {
@@ -30,18 +30,25 @@ public class JController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/getBookList", produces="application/json; charset=utf-8")
+	@RequestMapping(value="/getBookList", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	public String getBookList(HttpServletRequest hsr, Model model) {
-//		int room_type = Integer.parseInt(hsr.getParameter("room_type"));
-//		int howmany = Integer.parseInt(hsr.getParameter("howmany"));
-//		String checkin = hsr.getParameter("checkin");
-//		String checkout = hsr.getParameter("checkout");
-//		iJBook ibook = sqlSession.getMapper(iJBook.class);
-//		ArrayList<Books> bookList(room_type, howmany, checkin, checkout);
-//		ArrayList<Books> books = ibook.bookList();
-//		model.addAttribute("books",books);
-//		
-		return "";
-
+		int room_type = Integer.parseInt(hsr.getParameter("room_type"));
+		int howmany = Integer.parseInt(hsr.getParameter("howmany"));
+		String checkin = hsr.getParameter("checkin");
+		String checkout = hsr.getParameter("checkout");
+		iJBook ibook = sqlSession.getMapper(iJBook.class);
+		ArrayList<Books> books = ibook.bookList(room_type, howmany, checkin, checkout);
+		JSONArray ja = new JSONArray();
+		for(int i = 0; i < books.size(); i++) {
+			JSONObject jo = new JSONObject();
+			jo.put("id", books.get(i).getId());
+			jo.put("name", books.get(i).getName());
+			jo.put("howmany", books.get(i).getHowmany());
+			jo.put("howmuch", books.get(i).getHowmuch());
+			jo.put("type_name", books.get(i).getType_name());
+			ja.add(jo);
+			System.out.println(jo);
+		}
+		return ja.toString();
 	}
 }
