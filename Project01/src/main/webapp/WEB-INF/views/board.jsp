@@ -43,17 +43,34 @@
 	  .updatedate_width {
 	  	width: 15%;
 	  }
-	  .top_btn {
+	  .write {
 	  	font-size: 20px;
 	    padding: 6px 12px;
 	    background-color: #fff;
 	    border: 1px solid #ddd;
 	    font-weight: 600;
 	  }
+	  
+	  .pageInfo{
+	     list-style : none;
+	     display: inline-block;
+	     margin: 50px 0 0 100px;      
+	  }
+  	  .pageInfo li{
+	     float: left;
+	     font-size: 20px;
+	     margin-left: 18px;
+	     padding: 7px;
+	     font-weight: 500;
+  	  }
+	  a:link {color:black; text-decoration: none;}
+	  a:visited {color:black; text-decoration: none;}
+	  a:hover {color:black; text-decoration: underline;}
  </style>
 <body>
 <h1 align=center>게시판 목록</h1>
 <div class="table_wrap" align=center>
+	<a href="/project/insertBoard" class="write">글쓰기</a>
 	<table>
 		<thead>
 			<tr>
@@ -78,20 +95,29 @@
             </tr>
         </c:forEach>
 	</table>
-	<form id="moveForm" method="get">    
+	
+	<div class="pageInfo_wrap" >
+        <div class="pageInfo_area" id="pageInfo_area">
+        	<ul id="pageInfo" class="pageInfo">
+        	<c:if test="${pm.prev}">
+                <li class="previous"><a href="${pm.startPage-1}">Previous</a></li>
+            </c:if>
+            
+        	<c:forEach var="num" begin="${pm.startPage}" end="${pm.endPage}">
+        		<li class="pageInfo_btn"><a href="${num}">${num}</a></li>
+        	</c:forEach>
+        	
+        	<c:if test="${pm.next}">
+                <li class="next"><a href="${pm.endPage+1}">Next</a></li>
+            </c:if>  
+        	</ul>
+        </div>
+    </div>
+    
+	<form id="move" method="get">
+		<input type="hidden" name="pageNum" value="${pm.page.pageNum}">
+        <input type="hidden" name="amount" value="${pm.page.amount}">    
     </form>
-	<br>
-	<a href="/project/insertBoard" class="write">글쓰기</a>
-<!-- 	<br><br> -->
-<!-- 	<div class="pageInfo_wrap" > -->
-<!--         <div class="pageInfo_area" id="pageInfo_area"> -->
-<!--         	<ul id="pageInfo" class="pageInfo"> -->
-<%--         	<c:forEach var="num" begin="${pagemake.startPage}" end="${pagemake.endPage}"> --%>
-<%--         		<li class="pageInfo_btn"><a href="${num}">${num}</a></li> --%>
-<%--         	</c:forEach> --%>
-<!--         	</ul> -->
-<!--         </div> -->
-<!--     </div> -->
 </div>
 </body>
 <script src="http://code.jquery.com/jquery-3.5.0.js"></script>
@@ -103,19 +129,31 @@ $(document)
 	checkAlert(result);
 	
 	function checkAlert(result){
+		console.log("["+result+"]");
+		if(result=='') return;
 		if(result=="ok"){
 			alert("등록이 완료되었습니다.");
-			return false;
+		}
+		if(result=="update") {
+			alert("수정이 완료되었습니다.");
+		}
+		if(result=="delete") {
+			alert("삭제가 완료되었습니다.");
 		}
 	}	
 })
 
 .on('click','#get',function(e) {
-	 e.preventDefault();
-	 console.log(${list.bno});
-     $('#moveForm').append("<input type='hidden' name='bno' value='"+${list.bno}+ "'>");
-     $('#moveForm').attr("action","/project/getBoard");
-     $('#moveForm').submit();
+	e.preventDefault(); 
+    $('#move').append("<input type='hidden' name='bno' value='"+ $(this).attr("href")+ "'>");
+    $('#move').attr("action","/project/getBoard");
+    $('#move').submit();
+})
+.on('click','.pageInfo a',function(e) {
+	e.preventDefault();
+	 $('#move').find("input[name='pageNum']").val($(this).attr("href"));
+	 $('#move').attr("action", "/project/listBoard");
+	 $('#move').submit();
 })
 </script>
 </html>

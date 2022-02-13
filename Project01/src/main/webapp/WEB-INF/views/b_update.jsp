@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 조회</title>
+<title>게시판 수정</title>
 </head>
 <style>
 <style type="text/css">
@@ -48,18 +48,19 @@
 	}
 </style>
 <body>
-	<h1>조회 페이지</h1>
+	<h1>게시판 수정</h1>
+	<form id="updateFrm" action="/project/update" method="post">
 	<div class="input_wrap">
 		<label>게시판 번호</label>
 		<input name="bno" readonly="readonly" value='<c:out value="${get.bno}"/>' >
 	</div>
 	<div class="input_wrap">
 		<label>게시판 제목</label>
-		<input name="title" readonly="readonly" value='<c:out value="${get.title}"/>' >
+		<input name="title" value='<c:out value="${get.title}"/>' >
 	</div>
 	<div class="input_wrap">
 		<label>게시판 내용</label>
-		<textarea rows="3" name="content" readonly="readonly"><c:out value="${get.content}"/></textarea>
+		<textarea rows="3" name="content"><c:out value="${get.content}"/></textarea>
 	</div>
 	<div class="input_wrap">
 		<label>게시판 작성자</label>
@@ -75,8 +76,11 @@
 	</div>		
 	<div class="btn_wrap">
 		<a class="btn" id="list">목록 페이지</a> 
-		<a class="btn" id="update">수정 하기</a>
+		<a class="btn" id="done">완료</a>
+		<a class="btn" id="delete">삭제</a>
+		<a class="btn" id="cancel">취소</a>
 	</div>
+	</form>
 	<form id="infoForm" action="/project/update" method="get">
 		<input type="hidden" id="bno" name="bno" value='<c:out value="${get.bno}"/>'>
 	</form>
@@ -89,8 +93,16 @@ $(document)
 	$("#infoForm").attr("action", "/project/listBoard");
 	$("#infoForm").submit();
 })
-.on('click','#update',function() {
-	$("#infoForm").attr("action", "/project/update");
+.on('click','#done',function() {
+	$('#updateFrm').submit();
+})
+.on('click','#delete',function() {
+	$("#infoForm").attr("action","/project/delete");
+	$("#infoForm").attr("method","post");
+	$("#infoForm").submit();
+})
+.on('click','#cancel',function() {
+	$("#infoForm").attr("action", "/project/getBoard");
 	$("#infoForm").submit();
 })
 </script>

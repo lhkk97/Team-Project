@@ -4,7 +4,7 @@ public class Page {
 	private int pageNum;
 	private int amount;
 	public Page() { 
-		this(1,10);
+		this(1,5);
 	}
 	public Page(int pageNum, int amount) {
 		this.pageNum=pageNum;

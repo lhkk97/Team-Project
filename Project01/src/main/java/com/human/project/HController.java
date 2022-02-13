@@ -169,29 +169,61 @@ public class HController {
 	
 	// 게시판 목록
 	@RequestMapping(value = "/listBoard")
-	public String listBoard(Model model) {
+	public String listBoard(Model model,Page page) {
 		iBoard board=sqlSession.getMapper(iBoard.class);
-		ArrayList<Board> alBoard=board.listBoard();
-		model.addAttribute("list",alBoard);
-//		ArrayList<Board> alPage=board.getListPaging(page);
-//		model.addAttribute("list",alPage);
-//		
-//		int total=board.getPageTotal();
-//		PageMaker pagemake=new PageMaker(page,total);
-//		model.addAttribute("pagemake",pagemake);
+//		ArrayList<Board> list=board.listBoard();
 		
+		ArrayList<Board> list=board.getListPaging(page);
+		model.addAttribute("list",list);
+		
+		int total = board.getTotal();
+		System.out.println(total);
+        PageMaker pageMake = new PageMaker(page, total);
+        model.addAttribute("pm",pageMake);
 		return "board";
 	}
 	
 	// 게시판 조회
 	@RequestMapping("/getBoard")
-	public String getBoard(HttpServletRequest hsr,Model model) {
+	public String getBoard(int bno,Model model) {
+		iBoard board=sqlSession.getMapper(iBoard.class);
+		model.addAttribute("get",board.getBoard(bno));
+		return "b_select";
+	}
+	
+	// 게시판 수정
+	@RequestMapping("/update")
+	public String updateBoard(int bno,Model model) {
+		iBoard board=sqlSession.getMapper(iBoard.class);
+		model.addAttribute("get",board.getBoard(bno));
+		return "b_update";
+	}
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String updateBoard(HttpServletRequest hsr,RedirectAttributes rttr) {
 		int bno=Integer.parseInt(hsr.getParameter("bno"));
-		System.out.println("["+bno+"]");
+		String title=hsr.getParameter("title");
+		String content=hsr.getParameter("content");
 		
 		iBoard board=sqlSession.getMapper(iBoard.class);
-		ArrayList<Board> alBoard=board.getBoard(bno);
-		model.addAttribute("get",alBoard);
-		return "b_select";
+		
+		System.out.println("["+bno+"]");
+		System.out.println("["+title+"]");
+		System.out.println("["+content+"]");
+		
+		board.updateBoard(bno,title,content);
+		
+		rttr.addFlashAttribute("result","update");
+		return "redirect:/listBoard";
+	}
+	
+	// 게시판 삭제
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String deleteBoard(int bno, RedirectAttributes rttr) {
+		iBoard board=sqlSession.getMapper(iBoard.class);
+	    board.deleteBoard(bno);
+	    
+	    rttr.addFlashAttribute("result", "delete");
+	        
+	    return "redirect:/listBoard";
 	}
 }
