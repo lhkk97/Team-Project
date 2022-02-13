@@ -4,6 +4,27 @@
 
 <mapper namespace="com.human.project.iBoard">
 	<insert id="insertBoard">
-		insert into board(bno,title,content,writer) values (seq_bno.nextval,#{title}, #{content}, #{writer});   
+		insert into board(bno,title,content,writer) values (seq_bno.nextval,#{param1},#{param2},#{param3})   
     </insert>
+    
+    <select id="listBoard" resultType="com.human.project.Board">
+    	select bno,title,writer,regdate,updateDate from board
+    	order by bno
+    </select>
+    <select id="getBoard" resultType="com.human.project.Board">
+    	select bno,title,writer,regdate,updateDate from board
+    	where bno=#{param1}
+    </select>
+    
+    <select id="getListPaging" resultType="com.human.project.Board">
+    	<![CDATA[
+    		select bno, title, content, writer, regdate, updatedate from(
+    			select rownum as rn, bno, title, content, writer, regdate, updatedate
+    			from board where rownum <= #{pageNum} * #{amount}) 
+			where rn > (#{pageNum} -1) * #{amount}
+    	]]>
+    </select>
+    <select id="getPageTotal" resultType="int">
+    	select count(*) from board
+    </select>
 </mapper>

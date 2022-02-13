@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -149,14 +150,48 @@ public class HController {
 	
 	// !! 게시판 !!
 	// 게시판 등록
-	@RequestMapping(value = "/insertBoard", method = RequestMethod.GET)
+	@RequestMapping("/insertBoard")
 	public String insertBoard() {
 		return "b_insert";
 	}
+	@RequestMapping(value = "/insertBoard", method = RequestMethod.POST)
+	public String insertBoard(HttpServletRequest hsr,RedirectAttributes rttr) {
+		String title=hsr.getParameter("title");
+		String content=hsr.getParameter("content");
+		String writer=hsr.getParameter("writer");
+		
+		iBoard board=sqlSession.getMapper(iBoard.class);
+		board.insertBoard(title, content, writer);
+		
+		rttr.addFlashAttribute("result","ok");
+		return "redirect:/listBoard";
+	}
 	
 	// 게시판 목록
-	@RequestMapping(value = "/listBoard", method = RequestMethod.GET)
-	public String listBoard() {
+	@RequestMapping(value = "/listBoard")
+	public String listBoard(Model model) {
+		iBoard board=sqlSession.getMapper(iBoard.class);
+		ArrayList<Board> alBoard=board.listBoard();
+		model.addAttribute("list",alBoard);
+//		ArrayList<Board> alPage=board.getListPaging(page);
+//		model.addAttribute("list",alPage);
+//		
+//		int total=board.getPageTotal();
+//		PageMaker pagemake=new PageMaker(page,total);
+//		model.addAttribute("pagemake",pagemake);
+		
 		return "board";
+	}
+	
+	// 게시판 조회
+	@RequestMapping("/getBoard")
+	public String getBoard(HttpServletRequest hsr,Model model) {
+		int bno=Integer.parseInt(hsr.getParameter("bno"));
+		System.out.println("["+bno+"]");
+		
+		iBoard board=sqlSession.getMapper(iBoard.class);
+		ArrayList<Board> alBoard=board.getBoard(bno);
+		model.addAttribute("get",alBoard);
+		return "b_select";
 	}
 }
