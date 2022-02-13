@@ -81,9 +81,12 @@
 				<th class="updatedate_width">수정일</th>
 			</tr>
 		</thead>
-		<c:forEach items="${list}" var="list">
+		<c:forEach items="${list}" var="list" varStatus="status">
             <tr>
-            	<td><c:out value="${list.bno}"/></td>
+<%--             	<td><c:out value="${list.bno}"/></td> --%>
+            	<td>
+	     			<c:out value="${status.count}"/>
+				</td>
 				<td>
 					<a id=get href='<c:out value="${list.bno}"/>'>
                         <c:out value="${list.title}"/>
