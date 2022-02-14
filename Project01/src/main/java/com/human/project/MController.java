@@ -29,7 +29,7 @@ public class MController {
 	public String RoomType() {
 		return "roomtype";
 	}
-	@RequestMapping("/addType")
+	@RequestMapping("/addType") //roomtype 룸타입 insert
 	public String addType(HttpServletRequest hsr) {
 		String mCode=hsr.getParameter("type_code");
 		String mName=hsr.getParameter("type_name");
@@ -42,7 +42,7 @@ public class MController {
 	public String RoomInfo() {
 		return "roomInfo";
 	}
-	@ResponseBody
+	@ResponseBody //룸 셀렉트 출력
 	@RequestMapping(value="/roomlist", method = RequestMethod.GET, produces = "apllication/json;charset=utf-8")
 	public String roomList() {
 		iRoom r=sqlSession.getMapper(iRoom.class);
@@ -60,7 +60,7 @@ public class MController {
 		}
 		return ja.toString();
 	}
-	@ResponseBody
+	@ResponseBody //룸타입 셀렉트 출력
 	@RequestMapping(value="/typelist", method = RequestMethod.GET, produces = "apllication/json;charset=utf-8")
 	public String getTypeList() {
 		iRoom dep=sqlSession.getMapper(iRoom.class);
@@ -78,7 +78,7 @@ public class MController {
 	public String addInfo(HttpServletRequest hsr) {
 		String strCode=hsr.getParameter("id");
 	      String name=hsr.getParameter("name");
-	      int type=Integer.parseInt(hsr.getParameter("room_type"));
+	      int type=Integer.parseInt(hsr.getParameter("type"));
 	      int howmany=Integer.parseInt(hsr.getParameter("howmany"));
 	      int howmuch=Integer.parseInt(hsr.getParameter("howmuch"));
 	      
@@ -90,5 +90,13 @@ public class MController {
 	    	  room.upInfo(code,name,type,howmany,howmuch);
 	      }
 	      return "redirect:/roominfo";
+	}
+	@RequestMapping("/delInfo")
+	public String delInfo(HttpServletRequest hsr) {
+		int code=Integer.parseInt(hsr.getParameter("id"));
+		
+		iRoom room=sqlSession.getMapper(iRoom.class);
+		room.delInfo(code);
+		return "redirect:/roominfo";
 	}
 }

@@ -85,7 +85,7 @@ $(document)
 })
 .on('submit','#frmAddRoom',function() {
  	if ($('input[name=name]').val() == ''
-     || $('input[name=room_type]').val() == ''
+     || $('input[name=type]').val() == ''
      || $('input[name=howmany]').val() == ''
      || $('input[name=howmuch]').val() == '') {
         alert('모든 값이 입력 되어야 합니다.');
@@ -93,12 +93,12 @@ $(document)
               }
           return true;
 })
-// .on('click','#btnDelete',function(){
-// 	let url="/project/deleteRoom?typecode="+$('#id').val();
-// 	console.log(url);
-// 	document.location=url;
-// 	return false;
-// })
+.on('click','#btnDelete',function(){
+	let url="/project/delInfo?id="+$('#id').val();
+	console.log(url);
+	document.location=url;
+	return false;
+})
 .on('click','#selRoom option',function(){
 	console.log($(this).val()+','+$(this).text());
 	$('#id').val($(this).val());
