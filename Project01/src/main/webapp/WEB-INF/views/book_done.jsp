@@ -12,20 +12,23 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
 	.book_done-list{margin-top:100px; font-size:1rem; vertical-align:top;}
-	.book_done-list article {box-shadow:2px 7px 20px 8px rgb(0 0 0 / 10%); padding:40px; display:inline-block; vertical-align:top; height:550px;}
+	.book_done-list article {width:595px; box-sizing:border-box;border:1px solid #ddd; padding:40px; display:inline-block; vertical-align:top; height:550px;}
 	.book_done-list input{font-size:1rem; border:none; text-align:right;}
-	.book_done-list input[type=button]{cursor:pointer; width:100%; text-align:center; padding:10px 0;}
+	.book_done-list input[type=button]{margin:10px 0; cursor:pointer; width:100%; text-align:center; padding:10px 0;}
+	.book_done-list input[type=submit]{margin-top:10px;cursor:pointer; width:100%; text-align:center; padding:10px 0;}
 	.book_done-list input[type=date]{padding:0; margin:0;}
-	.book_done-list ul{}
+	.book_done-list ul{width:100%;}
 	.book_done-list ul:nth-child(2) li{height:100px;}
-	.book_done-list ul li{float:left; border-bottom:1px solid #ccc; height:50px; line-height:50px; width:300px;}
-	.book_done-list li:first-child{width:140px;}
+	.book_done-list ul li{float:left; text-align:right; border-bottom:1px solid #ccc; height:50px; line-height:50px; width:70%;}
+	.book_done-list ul li:first-child{width:30%; font-weight:500; text-align:left;}
 	.book_done-list .option{position:relative; background:#fff; cursor:pointer;}
 	.book_done-list .option ul{position:absolute; left:0; right:0; top:100%; border:1px solid #ccc;}
-	.book_done-list .option ul li{height:auto; padding:5px 0; background:#fff; width:100%; line-height:1.2; white-space:nowrap; cursor:pointer;}
+	.book_done-list .option ul li{font-weight:300; text-align:right;height:auto; padding:5px 0; background:#fff; width:100%; line-height:1.2; white-space:nowrap; cursor:pointer;}
 	.getRoomList{width:100%; border-collapse:collapse;}
+	.getRoomList th{border:1px solid #ccc;}
 	.getRoomList tbody tr{cursor:pointer;}
 	.getRoomList tbody tr:hover{background:#f2f2f2;}
+	.getRoomList tbody tr td{text-align:center; padding:5px; box-sizing:border-box;}
 </style>
 </head>
 <body>
@@ -38,7 +41,6 @@
 					<li class="option">
 						<p>객실 종류 선택</p>
 						<ul style="display:none;">
-							<li data-value="*">전체 객실</li>
 						<c:forEach items="${roomtypeList}" var="roomtypeList">
 							<li data-value="${roomtypeList.type_code}">${roomtypeList.type_name}</li>
 						</c:forEach>
@@ -64,49 +66,50 @@
 						<tr><th>객실명</th><th>객실종류</th><th>최대인원</th><th>금액</th></tr>
 					</thead>
 					<tbody></tbody>
-<%-- 					<c:forEach items="${books}" var="books"> --%>
-<%-- 					<tr id="${books.id}"><td>${books.name}</td><td>${books.type_name}</td><td>${books.howmany}</td><td>${books.howmuch}</td></tr> --%>
-<%-- 					</c:forEach> --%>
 				</table>
 			</article>
-			
 			<article>
-<!-- 				<ul> -->
-<!-- 					<li>예약번호</li> -->
-<!-- 					<li><input type="text" id="book_id" name="book_id" placeholder="자동입력란" readonly></li> -->
-<!-- 				</ul> -->
-				<ul>
-					<li>객실종류</li>
-					<li><input type="text" class="get_roomtype" placeholder="자동입력란" readonly></li>
-				</ul>
-				<ul>
-					<li>예약기간</li>
-					<li>
-						<p>체크인 <input type="date" class="get_in_date" readonly></p>
-						<p>체크아웃 <input type="date" class="get_out_date" readonly></p>
-					</li>
-				</ul>
-				<ul>
-					<li>객실명</li>
-					<li><input type="text" class="get_roomname" placeholder="자동입력란" readonly></li>
-				</ul>
-
-				<ul>
-					<li>숙박인원</li>
-					<li><input type="number" class="get_howmany" placeholder="자동입력란" readonly>명</li>
-				</ul>
-				<ul>
-					<li>예약자명</li>
-					<li><input type="text" class="get_m_name" placeholder="자동입력란" readonly></li>
-				</ul>
-				<ul>
-					<li>모바일(연락처)</li>
-					<li><input type="text" class="get_mobile" placeholder="자동입력란" readonly></li>
-				</ul>
-				<ul>
-					<li>비용</li>
-					<li><input type="text" class="get_howmuch" placeholder="자동입력란" readonly></li>
-				</ul>
+				<form action="/project/원규씨하는 부분으로 넘어가도록" method="POST">
+	<!-- 				<ul> -->
+	<!-- 					<li>예약번호</li> -->
+	<!-- 					<li><input type="text" id="book_id" name="book_id" placeholder="자동입력란" readonly></li> -->
+	<!-- 				</ul> -->
+					<ul>
+						<li>객실종류</li>
+						<li><input type="text" class="get_roomtype" placeholder="자동입력란" readonly></li>
+					</ul>
+					<ul>
+						<li>예약기간</li>
+						<li>
+							<p>체크인 <input type="date" class="get_in_date" readonly></p>
+							<p>체크아웃 <input type="date" class="get_out_date" readonly></p>
+						</li>
+					</ul>
+					<ul>
+						<li>객실명</li>
+						<li><input type="text" class="get_roomname" placeholder="자동입력란" readonly></li>
+					</ul>
+	
+					<ul>
+						<li>숙박인원</li>
+						<li><input type="number" class="get_howmany" placeholder="자동입력란" readonly>명</li>
+					</ul>
+					<ul>
+						<li>예약자명</li>
+						<li><input type="text" class="get_m_name"></li>
+					</ul>
+					<ul>
+						<li>휴대폰번호</li>
+						<li><input type="text" class="get_mobile"></li>
+					</ul>
+					<ul>
+						<li>비용</li>
+						<li><input type="text" class="get_howmuch" placeholder="자동입력란" readonly></li>
+					</ul>
+					<div>
+						<input type="submit" id="btnView" value="예약">
+					</div>
+				</form>
 			</article>
 		</section>
 	</div>
