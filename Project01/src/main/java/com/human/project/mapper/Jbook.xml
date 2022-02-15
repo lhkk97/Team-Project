@@ -16,4 +16,8 @@
 	and (in_date >= #{param3} and in_date < #{param4} or out_date > #{param3} and out_date <= #{param4})
 	]]>
 </select>
+<insert id="insertBook">
+	insert into book(book_id, booker, room_id, in_date, out_date)
+	 values(seq_book.nextval, #{param1}, #{param2}, #{param3}, #{param4})
+</insert>
 </mapper>
