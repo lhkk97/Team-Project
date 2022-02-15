@@ -37,7 +37,7 @@ table.table1 {
     left:50%;
     top:50%;
     margin-left:-299px;
-    margin-top:80px;
+    margin-top:90px;
 }
 </style>
 <body>

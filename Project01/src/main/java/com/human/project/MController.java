@@ -21,6 +21,11 @@ import net.sf.json.JSONObject;
 public class MController {
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@RequestMapping("/manage")
+	public String Manage() {
+		return "manage";
+	}
 	@RequestMapping("/room") //room 웹페이지
 	public String Room() {
 		return "room";

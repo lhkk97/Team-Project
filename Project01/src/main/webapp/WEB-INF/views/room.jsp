@@ -25,7 +25,7 @@
          display: block; 
          width: 100%; 
          height: 100%; 
-         object-fit: cover; 
+         object-fit: cover;
       }
 .room_info {
 	font-size:25px;
@@ -118,6 +118,9 @@
         <div class="swiper-slide">
           <img src="resources/images/deluxe3.jpg" />
         </div>
+        <div class="swiper-slide">
+          <img src="resources/images/deluxe4.jpg" />
+        </div>
 		<div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
       </div>
@@ -131,6 +134,9 @@
 	        </div>
 	        <div class="swiper-slide">
 	          <img src="resources/images/deluxe3.jpg" />
+	        </div>
+	        <div class="swiper-slide">
+	          <img src="resources/images/deluxe4.jpg" />
 	        </div>
 	      </div>
      </div>
@@ -188,7 +194,7 @@
 <script>
 $(document)
 .on('click','#btnDone',function(){
-	document.location="/project/roomtype";
+	document.location="/project/boon_done";
 	return false;
 })
 </script>
