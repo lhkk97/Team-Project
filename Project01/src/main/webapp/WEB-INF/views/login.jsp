@@ -49,16 +49,9 @@
 		alert("로그인에 실패했습니다. 아이디와 비밀번호를 다시 입력해주세요.");
 	</script>
 </c:if>
-<c:if test="${already=='already_login'}">
-console.log(${already});
-	<script type="text/javascript">
-		alert("로그아웃 후 로그인이 가능합니다.");
-	</script>
-</c:if>
 </body>
 <script src='https://code.jquery.com/jquery-3.5.0.js'></script>
 <script>
-$(document)
 // 로그인 -> 로그인버튼
 .on('click','#login',function() {
 	if($('#userid').val()=='') {
