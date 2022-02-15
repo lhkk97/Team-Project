@@ -25,4 +25,7 @@
  <update id="upInfo">
 	update room set name=#{param2},room_type=#{param3},howmany=#{param4},howmuch=#{param5} where id=#{param1}
 </update>
+<delete id="delInfo">
+	delete from room where id=#{param1}
+</delete>
  </mapper>
