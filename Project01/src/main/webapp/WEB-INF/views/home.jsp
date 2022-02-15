@@ -21,5 +21,12 @@
 </body>
 <script src='https://code.jquery.com/jquery-3.5.0.js'></script>
 <script>
+$(document)
+.ready(function() {
+	let result = '${result}';
+	if(result === 'already_login'){
+		alert('로그아웃 후에 로그인 가능합니다.');
+	}
+})
 </script>
 </html>

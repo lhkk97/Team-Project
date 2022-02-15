@@ -8,5 +8,6 @@ public interface iMember {
 	void login(String userid);
 	void logout(String userid);
 	
-	ArrayList<Member> dlgList(String keyword);
+	ArrayList<MemberType> dlgList();
+	void updateType(String userid, int member_type);
 }

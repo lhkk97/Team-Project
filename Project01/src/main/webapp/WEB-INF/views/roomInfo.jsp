@@ -23,21 +23,21 @@ tr.tr1 {
     left:50%;
     top:50%;
     margin-left:-110px;
-    margin-top:-120px;
+    margin-top:-70px;
 }
 td.td1 {
     position:absolute;
     left:50%;
     top:50%;
     margin-left:-300px;
-    margin-top:-100px;
+    margin-top:-40px;
 }
 table.table1 {
     position:absolute;
     left:50%;
     top:50%;
     margin-left:-299px;
-    margin-top:90px;
+    margin-top:150px;
 }
 </style>
 <body>
@@ -80,8 +80,8 @@ table.table1 {
                      <input type=reset value=비우기>
                      </td>
                  </tr>
+			</table>
 		</tbody>
-</table>
 </table>
 </form>
 </body>
