@@ -20,4 +20,7 @@
 	insert into book(book_id, booker, room_id, in_date, out_date)
 	 values(seq_book.nextval, #{param1}, #{param2}, #{param3}, #{param4})
 </insert>
+<select id="getBookSession" resultType="com.human.project.Member">
+	select name, mobile from member where userid = #{param1}
+</select>
 </mapper>
