@@ -24,6 +24,6 @@
 	select name, mobile from member where userid = #{param1}
 </select>
 <select id="getReservation" resultType="com.human.project.Books">
-
+	select book_id, booker, room_id,
 </select>
 </mapper>
