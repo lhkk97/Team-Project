@@ -63,6 +63,8 @@ public class JController {
 		
 		iJBook ibook = sqlSession.getMapper(iJBook.class);
 		ibook.insertBook(booker, roomid, in_date, out_date);
+		
+		
 		// book_done 출력용
 //		String roomtype = hsr.getParameter("roomtype");
 //		String roomname = hsr.getParameter("roomname");
