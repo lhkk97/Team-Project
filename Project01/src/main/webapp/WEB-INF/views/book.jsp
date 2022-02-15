@@ -11,31 +11,6 @@
 <link rel="stylesheet" href="${path}/resources/css/reset.css">
 <link rel="stylesheet" href="${path}/resources/css/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<style>
-	.book-list{margin-top:100px; font-size:1rem; vertical-align:top;}
-	.book-list article {width:595px; box-sizing:border-box;border:1px solid #ddd; padding:40px; display:inline-block; vertical-align:top; height:550px;}
-	.book-list article:first-child{margin-right:6px;}
-	.book-list input{font-size:1rem; border:none; text-align:right;}
-	.book-list input[type=button]{margin:10px 0; cursor:pointer; width:100%; text-align:center; padding:10px 0;}
-	.book-list input[type=submit]{margin-top:10px;cursor:pointer; width:100%; text-align:center; padding:10px 0;}
-	.book-list input[type=date]{padding:0; margin:0;}
-	.book-list ul{width:100%;}
-	.book-list ul:nth-child(2) li{height:100px;}
-	.book-list ul li{float:left; text-align:right; border-bottom:1px solid #ccc; height:50px; line-height:50px; width:70%;}
-	.book-list ul li:first-child{width:30%; font-weight:500; text-align:left;}
-	.book-list .option{position:relative; background:#fff; cursor:pointer; padding-right:25px; box-sizing:border-box;}
-	.book-list .option::before{content:''; display:block; transform:rotate(45deg) translateY(-100%);
-		position:absolute; right:10px; top:50%;
-		border:4px solid #666; border-top-color:transparent; border-left-color:transparent;}
-	.book-list .option ul{position:absolute; right:0; top:100%; border:1px solid #ccc; box-sizing:border-box; background:#fff; width:160px; box-shadow:0px 0px 10px 1px rgb(0 0 0 / 10%);}
-	.book-list .option ul li{font-weight:300; text-align:right;height:auto; padding:5px 20px 5px 0; box-sizing:border-box; background:#fff; width:100%; line-height:1.2; white-space:nowrap; cursor:pointer;}
-	.book-list .option ul li:last-child{border-bottom:0;}
-	.getRoomList{width:100%; border-collapse:collapse;}
-	.getRoomList th{border:1px solid #ccc; padding:6px 0;}
-	.getRoomList tbody tr{cursor:pointer;}
-	.getRoomList tbody tr:hover{background:#f2f2f2;}
-	.getRoomList tbody tr td{text-align:center; padding:5px; box-sizing:border-box;}
-</style>
 </head>
 <body>
 	<div class="wrap">
@@ -110,11 +85,11 @@
 					</ul>
 					<ul>
 						<li>예약자명</li>
-						<li><input type="text" class="get_booker" name="booker" readonly></li>
+						<li><input type="text" class="get_booker" name="booker" value="${userSession.name}" readonly></li>
 					</ul>
 					<ul>
 						<li>휴대폰번호</li>
-						<li><input type="text" class="get_mobile" name="mobile" readonly></li>
+						<li><input type="text" class="get_mobile" name="mobile" value="${userSession.mobile}" readonly></li>
 					</ul>
 					<ul>
 						<li>비용</li>
@@ -227,8 +202,8 @@
 // 			$('.get_booker').val($('.howmany', this).text());
 // 			$('.get_mobile').val($('.howmany', this).text());
 			$('.get_howmuch').val($('.howmuch', this).text());
-		})
-		;
+		});
+// 		.on('click', '')
 	</script>
 </body>
 </html>
