@@ -44,21 +44,34 @@ public class YController {
 		for(int i=0; i<getRezList.size(); i++) {
 			JSONObject jo = new JSONObject();
 			jo.put("book_id", getRezList.get(i).getBook_id());
-			jo.put("booker", getRezList.get(i).getBooker());
-			jo.put("room_id", getRezList.get(i).getRoom_id());
+			jo.put("name", getRezList.get(i).getName());
+			jo.put("mobile", getRezList.get(i).getMobile());
+			jo.put("room_type", getRezList.get(i).getRoom_type());
+			jo.put("howmany", getRezList.get(i).getHowmany());
+			jo.put("howmuch", getRezList.get(i).getHowmuch());
+			jo.put("in_date", getRezList.get(i).getIn_date());
+			jo.put("out_date", getRezList.get(i).getOut_date());
 			ja.add(jo);
 		}
 		return ja.toString();
 	}
 	
-	@RequestMapping("/addRez")
-	public String addRez(HttpServletRequest hsr) {
-		String strCode = hsr.getParameter("book_id");
-		String booker = hsr.getParameter("booker");
-		int room_id = Integer.parseInt(hsr.getParameter("room_id"));
+	@ResponseBody
+	@RequestMapping("/reservation_update")
+	public String getRezUp() {
 		
-		iRez rez = sqlSession.getMapper(iRez.class);
+		
 		return "";
 	}
+	
+//	@RequestMapping("/addRez")
+//	public String addRez(HttpServletRequest hsr) {
+//		String strCode = hsr.getParameter("book_id");
+//		String booker = hsr.getParameter("booker");
+//		int room_id = Integer.parseInt(hsr.getParameter("room_id"));
+//		
+//		iRez rez = sqlSession.getMapper(iRez.class);
+//		return "";
+//	}
 	
 }
