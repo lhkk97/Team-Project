@@ -40,7 +40,7 @@ th, td {
 				<th>OUT_DATE</th>
 				<th>CHECK_BOX</th>
 			</tr>
-		</thead>1
+		</thead>
 		<tbody id="getRezList">
 		</tbody>
 	</table>
