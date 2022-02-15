@@ -73,8 +73,16 @@ public class HController {
 //	}
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
-		return "login";
+	public String login(HttpSession session,Model model) {
+		String str="";
+		if(session.getAttribute("userid")!=null) {
+			str="already_login";
+			model.addAttribute("already",str);
+			System.out.println(str);
+			return "redirect:/";
+		} else {
+			return "login";
+		}
 	}
 	
 	@RequestMapping(value="/login_check",method=RequestMethod.POST)

@@ -29,7 +29,7 @@
 		</ul>
 		<ul class=b>
 			<li><label for="passcode">비밀번호</label></li>
-			<li><input type="text" id="passcode" name="passcode"></li>
+			<li><input type="password" id="passcode" name="passcode"></li>
 		</ul>
 	</div><br>
 	<div class="wrap" align=center>
@@ -42,6 +42,12 @@
 <c:if test="${fail_user=='fail'}">
 	<script type="text/javascript">
 		alert("로그인에 실패했습니다. 아이디와 비밀번호를 다시 입력해주세요.");
+	</script>
+</c:if>
+<c:if test="${already=='already_login'}">
+console.log(${already});
+	<script type="text/javascript">
+		alert("로그아웃 후 로그인이 가능합니다.");
 	</script>
 </c:if>
 </body>
