@@ -10,19 +10,6 @@
 </head>
 <body>
 <div class="wrap">
-<!-- 	<div class="top_header fixed"> -->
-<!-- 		<ul> -->
-			
-<%-- 			<c:if test="${userid==null}"> --%>
-<!-- 				<a href="/membership/login">로그인</a>&nbsp;&nbsp;<a href="/membership/signon">회원가입</a> -->
-<%-- 			</c:if> --%>
-<%-- 			<c:if test="${userid!=null}"> --%>
-<%-- 				${userid}&nbsp;&nbsp;<a href="#" onclick="if(confirm('로그아웃하시겠습니까?')){javascript:document.frm.submit();return false;}">로그아웃</a> --%>
-<%-- 			</c:if> --%>
-<!-- 			<li><a href="#">로그인</a></li> -->
-<!-- 			<li><a href="#">회원가입</a></li> -->
-<!-- 		</ul> -->
-<!-- 	</div> -->
 	<%@include file ="header.jsp" %>
 	<section>
 	
