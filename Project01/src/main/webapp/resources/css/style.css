@@ -16,9 +16,8 @@ li{list-style:none;}
 /* header */
 .top_header{width:100%; background:rgba(102,102,102,0.15); position:absolute; top:0; left:0; right:0; height:30px; line-height:30px;}
 .top_header ul{width:1200px; margin:0 auto; font-weight:500;}
-.top_header li{float:left; margin-left:10px;}
-/* 구조 수정하고 li로 고치기 */
-.top_header a{float:right; margin-left:10px; color:#666;}
+.top_header li{float:right; margin-left:10px;}
+.top_header a{color:#666;}
 /**/
 .top_header.main{width:100%; background:rgba(255,255,255,0.15); position:absolute; top:0; left:0; right:0; height:30px; line-height:30px;}
 .top_header.main a{color:#fff;}

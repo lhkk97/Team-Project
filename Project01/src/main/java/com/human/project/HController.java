@@ -3,6 +3,7 @@ package com.human.project;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -77,6 +79,8 @@ public class HController {
 	
 	@RequestMapping(value="/login_check",method=RequestMethod.POST)
 	public String login(HttpServletRequest hsr, Model model) {
+		HttpSession session=hsr.getSession();
+		
 		String str="";
 		String userid=hsr.getParameter("userid");
 		String passcode=hsr.getParameter("passcode");
@@ -98,8 +102,9 @@ public class HController {
 		}
 		if(str.equals("ok")) {
 			member.login(userid);
-			model.addAttribute("userid",userid);
-			return "home";
+			//model.addAttribute("userid",userid);
+			session.setAttribute("userid",userid);
+			return "redirect:/";
 		} else {
 			model.addAttribute("fail_user",str);
 			return "login";
@@ -108,9 +113,13 @@ public class HController {
 	//로그아웃
 	@RequestMapping(value = "/logout",method=RequestMethod.POST)
 	public String logout(HttpServletRequest hsr) {
-		String userid=hsr.getParameter("userid");
+		HttpSession session=hsr.getSession();
+		//String userid=hsr.getParameter("userid");
+		String userid=(String)session.getAttribute("userid");
+		
 		iMember member=sqlSession.getMapper(iMember.class);	
 		member.logout(userid);
+		session.invalidate();
 		return "redirect:/";
 	}
 	// 회원가입
@@ -149,14 +158,83 @@ public class HController {
 	
 	// !! 게시판 !!
 	// 게시판 등록
-	@RequestMapping(value = "/insertBoard", method = RequestMethod.GET)
+	@RequestMapping("/insertBoard")
 	public String insertBoard() {
 		return "b_insert";
 	}
+	@RequestMapping(value = "/insertBoard", method = RequestMethod.POST)
+	public String insertBoard(HttpServletRequest hsr,RedirectAttributes rttr) {
+		String title=hsr.getParameter("title");
+		String content=hsr.getParameter("content");
+		String writer=hsr.getParameter("writer");
+		
+		iBoard board=sqlSession.getMapper(iBoard.class);
+		board.insertBoard(title, content, writer);
+		
+		rttr.addFlashAttribute("result","ok");
+		return "redirect:/listBoard";
+	}
 	
 	// 게시판 목록
-	@RequestMapping(value = "/listBoard", method = RequestMethod.GET)
-	public String listBoard() {
+	@RequestMapping(value = "/listBoard")
+	public String listBoard(Model model,Page page) {
+		iBoard board=sqlSession.getMapper(iBoard.class);
+//		ArrayList<Board> list=board.listBoard();
+		
+		ArrayList<Board> list=board.getListPaging(page);
+		model.addAttribute("list",list);
+		
+		int total = board.getTotal();
+		System.out.println(total);
+        PageMaker pageMake = new PageMaker(page, total);
+        model.addAttribute("pm",pageMake);
 		return "board";
+	}
+	
+	// 게시판 조회
+	@RequestMapping("/getBoard")
+	public String getBoard(int bno,Model model,Page page) {
+		iBoard board=sqlSession.getMapper(iBoard.class);
+		model.addAttribute("get",board.getBoard(bno));
+		
+		model.addAttribute("page",page);
+		
+		return "b_select";
+	}
+	
+	// 게시판 수정
+	@RequestMapping("/update")
+	public String updateBoard(int bno,Model model) {
+		iBoard board=sqlSession.getMapper(iBoard.class);
+		model.addAttribute("get",board.getBoard(bno));
+		return "b_update";
+	}
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String updateBoard(HttpServletRequest hsr,RedirectAttributes rttr) {
+		int bno=Integer.parseInt(hsr.getParameter("bno"));
+		String title=hsr.getParameter("title");
+		String content=hsr.getParameter("content");
+		
+		iBoard board=sqlSession.getMapper(iBoard.class);
+		
+		System.out.println("["+bno+"]");
+		System.out.println("["+title+"]");
+		System.out.println("["+content+"]");
+		
+		board.updateBoard(bno,title,content);
+		
+		rttr.addFlashAttribute("result","update");
+		return "redirect:/listBoard";
+	}
+	
+	// 게시판 삭제
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String deleteBoard(int bno, RedirectAttributes rttr) {
+		iBoard board=sqlSession.getMapper(iBoard.class);
+	    board.deleteBoard(bno);
+	    
+	    rttr.addFlashAttribute("result", "delete");
+	        
+	    return "redirect:/listBoard";
 	}
 }

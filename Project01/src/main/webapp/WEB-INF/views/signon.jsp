@@ -9,13 +9,21 @@
 <title>회원등록</title>
 <link rel="stylesheet" href="${path}/resources/css/style.css">
 </head>
+<style>
+.b {margin-left:45%;}
+.a {
+	margin-left:45%;
+	margin-top:5%;
+}
+</style>
 <body>
 	<div>
+	<%@include file ="header.jsp" %>
 		<ul>
-			<li><label for="name">이름</label></li>
-			<li><input type="text" id="name"></li>
+			<li class=a><label for="name">이름</label></li>
+			<li class=b><input type="text" id="name"></li>
 		</ul>
-		<ul>
+		<ul class=b>
 			<li><label for="gender">성별</label></li>
 			<li>
 				<input type="radio" id="gender" name="gender" value="남성">
@@ -24,25 +32,25 @@
 				<label for="gender">여성</label>
 			</li>
 		</ul>
-		<ul>
+		<ul class=b>
 			<li><label for="mobile">전화번호</label></li>
 			<li><input type="number" id="mobile"></li>
 		</ul>
-		<ul>
+		<ul class=b>
 			<li><label for="userid">아이디</label></li>
 			<li><input type="text" id="userid"></li>
 		</ul>
-		<ul>
+		<ul class=b>
 			<li><label for="passcode">비밀번호</label></li>
 			<li><input type="password" id="passcode"></li>
 		</ul>
-		<ul>
+		<ul class=b>
 			<li><label for="pw_check">비밀번호 확인</label></li>
 			<li><input type="password" id="pw_check"></li>
 		</ul>
 	</div>
 	<br>
-	<div>
+	<div class=b>
 		<input type="submit" id=done value="완료">
 		<input type="reset" id=reset value="비우기">
 		<input type="button" id=cancel value="취소">
