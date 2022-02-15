@@ -6,26 +6,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
 <title> - Room - </title>
 <link rel="stylesheet" href="${path}/resources/css/style.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+<link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
 </head>
 <style>
 .swiper {
 	flex-shrink:0;
-  	 width: 400px;
+  	width: 500px;
   	margin-left:0;
     margin-top:80px;
     background-size: contain;
-        position:relative;
-        transition-property:transform;
+    position:relative;
+    transition-property:transform;
     
 }
+
 .swiper-slide img {
          display: block; 
          width: 100%; 
          height: 100%; 
          object-fit: cover;
+         position:relative;
       }
 .room_info {
 	font-size:25px;
@@ -39,9 +49,9 @@
 }
 .table1 {
 	margin-left:900px;
-    margin-top:-360px;
-    width:500px;
-    height:200px;
+    margin-top:-500px;
+    width:600px;
+    height:400px;
 }
 .text1 {
 	margin-left:500px;
@@ -66,16 +76,16 @@
 .bath_room {
 	font-size:19px;
 	margin-left:800px;
-	margin-top:-140px;
+	margin-top:-150px;
 }
 .bath_room_list {
 	margin-left:800px;
-    margin-top:50px;
+    margin-top:55px;
 }
 .etc {
 	font-size:19px;
 	margin-left:1100px;
-	margin-top:-160px;
+	margin-top:-175px;
 }
 .etc_list {
 	margin-left:1100px;
@@ -110,9 +120,6 @@
     >
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img src="resources/images/deluxe.jpg" />
-        </div>
-        <div class="swiper-slide">
           <img src="resources/images/deluxe2.jpg" />
         </div>
         <div class="swiper-slide">
@@ -120,15 +127,12 @@
         </div>
         <div class="swiper-slide">
           <img src="resources/images/deluxe4.jpg" />
-        </div>
+        </div>  
 		<div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
       </div>
       <div thumbsSlider="" class="swiper mySwiper">
       <div class="swiper-wrapper">
-	      <div class="swiper-slide">
-	          <img src="resources/images/deluxe.jpg" />
-	        </div>
 	        <div class="swiper-slide">
 	          <img src="resources/images/deluxe2.jpg" />
 	        </div>
@@ -142,7 +146,7 @@
      </div>
     </div>
 <table align=center class=table1>
-<tr><td class=room_info>Room-A<hr></td></tr>
+<tr><th class=room_info>Room-A<hr></th></tr>
 <tr><td style='font-weight:bold;'>객실명</td><td>101호</td></tr>
 <tr><td style='font-weight:bold;'>객실종류</td><td>디럭스</td></tr>
 <tr><td style='font-weight:bold;'>최대숙박인원</td><td>6</td></tr>
@@ -194,21 +198,26 @@
 <script>
 $(document)
 .on('click','#btnDone',function(){
-	document.location="/project/boon_done";
+	document.location="/project/book_done";
 	return false;
 })
 </script>
 <script>
+
 var swiper = new Swiper(".mySwiper", {
 	  loop: true,
-	  spaceBetween: 10,
+	  spaceBetween: 5,
 	  slidesPerView: 4,
 	  freeMode: true,
 	  watchSlidesProgress: true,
+	  navigation: {
+		  nextEl: ".swiper-button-next",
+		  prevEl: ".swiper-button-prev", 
+	  },
 	});
 	var swiper2 = new Swiper(".mySwiper2", {
 	  loop: true,
-	  spaceBetween: 10,
+	  spaceBetween: 5,
 	  navigation: {
 	    nextEl: ".swiper-button-next",
 	    prevEl: ".swiper-button-prev",
