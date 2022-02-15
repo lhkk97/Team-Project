@@ -1,25 +1,37 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;500&display=swap');
 /* 초기화 */
 * {margin:0; padding:0;}
-html{font-size:16px; font-weight:normal;}
+html, input{font-size:16px; font-weight:normal; color:#333; letter-spacing:-0.5px;
+	font-family: 'Noto Sans KR', 'Malgun Gothic',sans-serif; font-weight:300;}
+input[type=button], input[type=submit]{font-weight:500;}
 body{font-size:inherit; font-weight:inherit;}
 h1, h2, h3, h4, h5, h6{font-size:inherit; font-weight:inherit; display:inline-block;}
 a{color:#333;text-decoration:none;}
 li{list-style:none;}
-.fixed:before{content:''; clear:both; display:block;}
+.fixed::after{content:''; clear:both; display:block;}
 
 /* css 시작 */
 
 /* header */
-.top_header{width:100%; max-width:1200px; margin:0 auto; height:35px; line-height:35px;}
-.top_header ul{float:right;}
-.top_header li{float:left; margin-left:10px;}
-.header{width:100%; max-width:1200px; margin:0 auto; height:70px; line-height:70px; border-bottom:1px solid #f2f2f2;}
+.top_header{width:100%; background:rgba(102,102,102,0.15); position:absolute; top:0; left:0; right:0; height:30px; line-height:30px;}
+.top_header ul{width:1200px; margin:0 auto; font-weight:500;}
+.top_header li{float:right; margin-left:10px;}
+.top_header a{color:#666;}
+/**/
+.top_header.main{width:100%; background:rgba(255,255,255,0.15); position:absolute; top:0; left:0; right:0; height:30px; line-height:30px;}
+.top_header.main a{color:#fff;}
+.header{position:absolute; left:50%; top:30px; transform:translateX(-50%); width:1200px; height:100px;
+	line-height:100px; border-bottom:1px solid rgba(102,102,102,0.5);}
+.header.main{border-bottom:1px solid rgba(255,255,255,0.5);}
 .header > logo {float:left;}
 .header > ul{float:right;}
-.header > ul > li {float:left; margin-left:20px; font-size:1.25rem; font-weight:bold;}
+.header > ul > li {float:left; margin-left:20px; font-size:1.25rem; font-weight:500;}
+.header.main > ul > li > a{color:#fff;}
+.header.main > ul > li:nth-child(4) > a{color:#bfff13;}
 
 
 /* body */
-.wrap{width:100%;}/*background:url('../images/bg.jpg') center no-repeat; height:100%;*/
-section{max-width:1200px; margin:0 auto;}
+.wrap{width:100%; padding-top:130px;}/*background:url('../images/bg.jpg') center no-repeat; height:100%;*/
+section{max-width:1200px; margin:0 auto; }/*height:100vh;*/
+/* .wrap:first-child section{background:url('../images/bg.jpg') center no-repeat;} */
