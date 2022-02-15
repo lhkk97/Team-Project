@@ -9,11 +9,15 @@
 <select id="bookList" resultType="com.human.project.Books">
 	<![CDATA[
 	select a.id, a.name, a.howmany, a.howmuch, b.type_name from room a, roomtype b
-	where a.room_type = b.type_code and a.room_type = #{room_type} and a.howmany >= #{howmany}
+	where a.room_type = b.type_code and a.room_type = #{param1} and a.howmany >= #{param2}
 	minus
 	select b.id, b.name, b.howmany, b.howmuch, c.type_name from book a, room b, roomtype c
 	where a.room_id = b.id and b.room_type = c.type_code
-	and (in_date > #{checkin} and in_date < #{checkout} or out_date > #{checkin} and out_date < #{checkout})
+	and (in_date >= #{param3} and in_date < #{param4} or out_date > #{param3} and out_date <= #{param4})
 	]]>
 </select>
+<insert id="insertBook">
+	insert into book(book_id, booker, room_id, in_date, out_date)
+	 values(seq_book.nextval, #{param1}, #{param2}, #{param3}, #{param4})
+</insert>
 </mapper>
