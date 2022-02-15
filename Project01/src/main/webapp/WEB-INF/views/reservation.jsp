@@ -39,7 +39,7 @@ th, td {
 				<th>IN_DATE</th>
 				<th>OUT_DATE</th>
 				<th>CHECK_BOX</th>
-			</tr>asd
+			</tr>
 		</thead>
 		<tbody id="getRezList">
 		</tbody>
