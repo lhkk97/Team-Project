@@ -9,25 +9,35 @@
 <title>-login-</title>
 <link rel="stylesheet" href="${path}/resources/css/style.css">
 </head>
+<style>
+.b {
+	margin-left:45%;
+}
+.a {
+	margin-left:45%;
+ 	margin-top:5%;
+ } 
+</style>
 <body>
+<%@include file ="header.jsp" %>
 <form method=post action="/project/login_check" id=frmLogin>
 	<div class="wrap">
 		<ul>
-			<li><label for="userid">아이디</label></li>
-			<li><input type="text" id="userid" name="userid"></li>
-			<li><input type=hidden name=user id=user value="${fail_user}"></li>
+			<li class=a><label for="userid">아이디</label></li>
+			<li class=b><input type="text" id="userid" name="userid"></li>
+			<li class=b><input type=hidden name=user id=user value="${fail_user}"></li>
 		</ul>
-		<ul>
+		<ul class=b>
 			<li><label for="passcode">비밀번호</label></li>
 			<li><input type="text" id="passcode" name="passcode"></li>
 		</ul>
-	</div>
-	<div class="wrap">
+	</div><br>
+	<div class="wrap" align=center>
 		<input type="submit" id=login value="로그인">
 		<input type="reset" id=reset value="비우기">
 		<input type="button" id=cancel value="취소">
-	</div>
-	<div><a href='/project/signon'>회원가입</a></div>
+	</div><br>
+	<div align=center><a href='/project/signon'>회원가입</a></div>
 </form>
 <c:if test="${fail_user=='fail'}">
 	<script type="text/javascript">

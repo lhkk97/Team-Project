@@ -3,7 +3,37 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.human.project.iBoard">
-	<insert id="insertBoard">
-		insert into board(bno,title,content,writer) values (seq_bno.nextval,#{title}, #{content}, #{writer});   
+	<select id="listBoard" resultType="com.human.project.Board">
+    	select bno,title,writer,regdate,updateDate from board
+    	order by bno
+    </select>
+    
+    <select id="getBoard" resultType="com.human.project.Board">
+    	select bno,title,content,writer,regdate,updateDate
+    	from board where bno=#{bno}
+    </select>
+    
+    <insert id="insertBoard">
+		insert into board(bno,title,content,writer) values (seq_bno.nextval,#{param1},#{param2},#{param3})   
     </insert>
+    <update id="updateBoard">
+    	update board
+    	set title=#{param2},content=#{param3},updateDate=sysdate
+    	where bno=#{param1}
+    </update>
+    <delete id="deleteBoard">
+    	delete from board where bno=#{param1}
+    </delete>
+    
+    <select id="getListPaging" resultType="com.human.project.Board">
+    	<![CDATA[
+    		select bno, title, content, writer, regdate, updatedate from(
+    			select rownum  as rn, bno, title, content, writer, regdate, updatedate
+   				from board where rownum <= #{pageNum} * #{amount}) 
+			where rn > (#{pageNum} -1) * #{amount}
+    	]]>
+    </select>
+    <select id="getTotal" resultType="int">
+        select count(*) from board
+    </select>
 </mapper>

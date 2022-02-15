@@ -1,12 +1,15 @@
+package com.human.project;
+
+import java.sql.Date;
 
 public class Board {
     private int bno;
     private String title;
     private String content;
     private String writer;
-    private String regdate;
-    private String updateDate;
-	public Board(int bno, String title, String content, String writer, String regdate, String updateDate) {
+    private Date regdate;
+    private Date updateDate;
+	public Board(int bno, String title, String content, String writer, Date regdate, Date updateDate) {
 		this.bno = bno;
 		this.title = title;
 		this.content = content;
@@ -39,16 +42,16 @@ public class Board {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public String getRegdate() {
+	public Date getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(String regdate) {
+	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	public String getUpdateDate() {
+	public Date getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(String updateDate) {
+	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
 }
