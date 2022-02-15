@@ -64,7 +64,7 @@ $(document)
 				if(!confirm("회원정보를 가져오시겠습니까?")) return false;
 			},
 			success:function(txt) {
-				let head='<thead><tr><th>이름</th><th>성별</th><th>전화번호</th><th>아이디</th><th>비밀번호'
+				let head='<thead><tr><th></th><th>이름</th><th>성별</th><th>전화번호</th><th>아이디</th><th>비밀번호'
 						+'</th><th>등급</th><th>로그인시간</th><th>로그아웃시간</th></tr></thead>'
 				$('#tblMember').append(head);
 				console.log(txt);
