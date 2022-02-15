@@ -10,6 +10,35 @@
 <link rel="stylesheet" href="${path}/resources/css/style.css"> 
 </head>
 <style>
+table {
+	border-collapse: collapse;
+	text-align:center;
+}
+td {
+	border:1px solid black;
+	text-align:center;
+}
+tr.tr1 {
+	position:absolute;
+    left:50%;
+    top:50%;
+    margin-left:-110px;
+    margin-top:-120px;
+}
+td.td1 {
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-left:-300px;
+    margin-top:-100px;
+}
+table.table1 {
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-left:-299px;
+    margin-top:80px;
+}
 </style>
 <body>
 <form action="/project/addInfo" id="frmAddRoom">
@@ -17,12 +46,15 @@
 <%@include file ="header.jsp" %>
 </div>
 <table>
-<caption>객실정보 보기</caption>
+<tr class=tr1>
+<th>객실정보 보기</th>
+</tr>
 <tr>
-<td><select id=selRoom name=selRoom size=10 style='width:500px'></select></td>
-<td>		
+<td class=td1><select id=selRoom name=selRoom size=10 style='width:500px; background-color:honeydew'></select></td>
+</tr>
+<tbody class=table1>
+        <table class=table1 style='width:500px;'>
             <input type=hidden id=id name=id>
-               <table>
                   <tr>
                      <td align=right>객실명 :</td>
                      <td><input type=text name=name></td>
@@ -47,7 +79,8 @@
                      <input type=button id=btnDelete name=btnDelete value=삭제>
                      <input type=reset value=비우기>
                      </td>
-</tr>
+                 </tr>
+		</tbody>
 </table>
 </table>
 </form>

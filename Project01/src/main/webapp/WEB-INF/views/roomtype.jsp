@@ -9,14 +9,39 @@
 <title> - RoomType - </title>
 <link rel="stylesheet" href="${path}/resources/css/style.css"> 
 </head>
+<style>
+table {
+	text-align:center;
+	border:1px solid black;
+	border-collapse:collapse;
+	text-align:center;
+	font-family:serif;
+	position:absolute;
+    left:50%;
+    top:50%;
+    margin-left:-190px;
+    margin-top:-100px;
+}
+td {
+	border:1px solid black;
+}
+</style>
 <body>
 <div class="wrap">
 	<%@include file ="header.jsp" %>
 </div>
 <form action="/project/addType" id="frmAddType">
-타입코드: <input type=number name=type_code><br>
-객실타입명: <input type=text name=type_name><br>
-<input type=submit value="추가">
+<table>
+<tr>
+<td>타입코드:</td><td><input type=number name=type_code></td>
+</tr>
+<tr>
+<td>객실타입명:</td><td><input type=text name=type_name></td>
+</tr>
+<tr>
+<td colspan=2 align=center><input type=submit value="추가"></td>
+</tr>
+</table>
 </form>
 </body>
 <script src='https://code.jquery.com/jquery-3.5.0.js'></script>
