@@ -160,7 +160,7 @@
 				$('.option > ul').slideUp();
 			})
 		.on('click', '.option > ul > li', function(){
-			$('.option > p').text($(this).text());
+			$('.option > p').text($(this).text()); 
 			$('.option > p').attr('data-value',$(this).attr('data-value'));
 		})
 		.on('click', '#btnView', function(){

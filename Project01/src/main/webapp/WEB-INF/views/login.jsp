@@ -9,10 +9,6 @@
 <title>-login-</title>
 <link rel="stylesheet" href="${path}/resources/css/style.css">
 </head>
-<<<<<<< HEAD
-<body>
-	<div>
-=======
 <style>
 .b {
 	margin-left:45%;
@@ -26,7 +22,6 @@
 <%@include file ="header.jsp" %>
 <form method=post action="/project/login_check" id=frmLogin>
 	<div class="wrap">
->>>>>>> branch 'master' of https://github.com/lhkk97/Team-Project.git
 		<ul>
 			<li class=a><label for="userid">아이디</label></li>
 			<li class=b><input type="text" id="userid" name="userid"></li>

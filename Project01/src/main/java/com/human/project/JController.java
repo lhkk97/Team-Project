@@ -29,7 +29,6 @@ public class JController {
 		String userid = (String) session.getAttribute("userid");
 		
 		iJBook ibook = sqlSession.getMapper(iJBook.class);
-
 		ArrayList<RoomtypeList> roomtypeList = ibook.roomtypeList();
 		model.addAttribute("roomtypeList", roomtypeList);
 		if(session.getAttribute("userid") != null) {
@@ -65,11 +64,12 @@ public class JController {
 		return ja.toString();
 	}
 	@RequestMapping(value="/insertBook", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-	public String insertBook(HttpServletRequest hsr, HttpSession session, Model model) {
+	public String insertBook(HttpServletRequest hsr, Model model) {
+		HttpSession session = hsr.getSession();
 		String roomid = hsr.getParameter("roomid");
 		String in_date = hsr.getParameter("in_date");
 		String out_date = hsr.getParameter("out_date");
-		String booker = hsr.getParameter("booker");
+		String booker = (String) session.getAttribute("userid");
 		
 		iJBook ibook = sqlSession.getMapper(iJBook.class);
 		ibook.insertBook(booker, roomid, in_date, out_date);
@@ -90,9 +90,15 @@ public class JController {
 //		model.addAttribute(howmuch, "howmuch");
 		return "book_done";
 	}
+	
 	@RequestMapping("/book_done")
 	public String book_done() {
 		
 		return "book_done";
+	}
+	
+	@RequestMapping("/reservation")
+	public String reservation() {
+		return "reservation";
 	}
 }
