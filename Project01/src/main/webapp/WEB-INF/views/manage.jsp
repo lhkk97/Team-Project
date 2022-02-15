@@ -32,6 +32,6 @@
 <script src="https://code.jquery.com/jqeury-3.5.0.js"></script>
 <script>
 $(document)
-.on('click','#')
+
 </script>
 </html>
