@@ -27,10 +27,7 @@
 	<section>
 	
 		<P>  The time on the server is ${serverTime}. </P>
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/lhkk97/Team-Project.git
 	</section>
 	<!-- footer 영역-->
 </div>
