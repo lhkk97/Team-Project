@@ -9,6 +9,9 @@
 <title>게시판 목록</title>
 </head>
  <style>
+	  h1 {
+	  	margin-left:45%;
+	  }
 	  a {
 	  	text-decoration : none;
 	  }
@@ -18,18 +21,21 @@
 	 	margin-top : 20px;
 	 	text-align: center;
 	  }
-	  td, th {
+	  td {
 	  	border : 1px solid black;
-	  	height: 50px;
+	  	height: 40px;
 	  }
 	  th {
+	  	border : 1px solid black;
+	  	height: 50px;
 	  	font-size : 17px;
+	  	background:#BDBDBD;
 	  }
 	  thead {
 	  	font-weight: 700;
 	  }
 	  .table_wrap {
-	  	margin : 50px 0 0 50px;
+	  	margin : 50px 0 0 40px;
 	  }
 	  .bno_width {
 	  	width: 12%;
@@ -49,12 +55,13 @@
 	    background-color: #fff;
 	    border: 1px solid #ddd;
 	    font-weight: 600;
+	    margin-left:48%;
 	  }
 	  
 	  .pageInfo{
 	     list-style : none;
 	     display: inline-block;
-	     margin: 50px 0 0 100px;      
+	     margin: 50px 0 0 0;      
 	  }
   	  .pageInfo li{
 	     float: left;
@@ -68,7 +75,7 @@
 	  a:hover {color:black; text-decoration: underline;}
  </style>
 <body>
-<h1 align=center>게시판 목록</h1>
+<h1>게시판 목록</h1>
 <div class="table_wrap" align=center>
 	<a href="/project/insertBoard" class="write">글쓰기</a>
 	<table>
@@ -103,7 +110,7 @@
         <div class="pageInfo_area" id="pageInfo_area">
         	<ul id="pageInfo" class="pageInfo">
         	<c:if test="${pm.prev}">
-                <li class="previous"><a href="${pm.startPage-1}">Previous</a></li>
+                <li class="previous"><a href="${pm.startPage-1}">◀</a></li>
             </c:if>
             
         	<c:forEach var="num" begin="${pm.startPage}" end="${pm.endPage}">
@@ -111,7 +118,7 @@
         	</c:forEach>
         	
         	<c:if test="${pm.next}">
-                <li class="next"><a href="${pm.endPage+1}">Next</a></li>
+                <li class="next"><a href="${pm.endPage+1}">▶</a></li>
             </c:if>  
         	</ul>
         </div>

@@ -79,6 +79,8 @@
 	</div>
 	<form id="infoForm" action="/project/update" method="get">
 		<input type="hidden" id="bno" name="bno" value='<c:out value="${get.bno}"/>'>
+		<input type="hidden" id="pageNum" name="pageNum" value='<c:out value="${page.pageNum}"/>'>
+		<input type="hidden" id="amount" name="amount" value='<c:out value="${page.amount}"/>'>
 	</form>
 </body>
 <script src="http://code.jquery.com/jquery-3.5.0.js"></script>

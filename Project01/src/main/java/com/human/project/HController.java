@@ -3,6 +3,7 @@ package com.human.project;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,8 @@ public class HController {
 	
 	@RequestMapping(value="/login_check",method=RequestMethod.POST)
 	public String login(HttpServletRequest hsr, Model model) {
+		HttpSession session=hsr.getSession();
+		
 		String str="";
 		String userid=hsr.getParameter("userid");
 		String passcode=hsr.getParameter("passcode");
@@ -99,8 +102,9 @@ public class HController {
 		}
 		if(str.equals("ok")) {
 			member.login(userid);
-			model.addAttribute("userid",userid);
-			return "home";
+			//model.addAttribute("userid",userid);
+			session.setAttribute("userid",userid);
+			return "redirect:/";
 		} else {
 			model.addAttribute("fail_user",str);
 			return "login";
@@ -109,9 +113,13 @@ public class HController {
 	//로그아웃
 	@RequestMapping(value = "/logout",method=RequestMethod.POST)
 	public String logout(HttpServletRequest hsr) {
-		String userid=hsr.getParameter("userid");
+		HttpSession session=hsr.getSession();
+		//String userid=hsr.getParameter("userid");
+		String userid=(String)session.getAttribute("userid");
+		
 		iMember member=sqlSession.getMapper(iMember.class);	
 		member.logout(userid);
+		session.invalidate();
 		return "redirect:/";
 	}
 	// 회원가입
@@ -185,9 +193,12 @@ public class HController {
 	
 	// 게시판 조회
 	@RequestMapping("/getBoard")
-	public String getBoard(int bno,Model model) {
+	public String getBoard(int bno,Model model,Page page) {
 		iBoard board=sqlSession.getMapper(iBoard.class);
 		model.addAttribute("get",board.getBoard(bno));
+		
+		model.addAttribute("page",page);
+		
 		return "b_select";
 	}
 	
