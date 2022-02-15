@@ -20,6 +20,9 @@
 </style>
 
 <body>
+<<<<<<< HEAD
+
+=======
 	<h1 class=top>관리자 모드</h1>
 	<table>
 		<tr>
@@ -28,6 +31,7 @@
 			<td class=btn><input type=button id=member name=member value="회원관리"></td>		
 		</tr>
 	</table>
+>>>>>>> branch 'master' of https://github.com/lhkk97/Team-Project.git
 </body>
 <script src="https://code.jquery.com/jqeury-3.5.0.js"></script>
 <script>
