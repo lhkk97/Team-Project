@@ -5,13 +5,11 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-   <link rel="stylesheet" href="${path}/resources/css/style.css"> 
-<div class="wrap">
-   <%@include file ="header.jsp" %>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="${path}/resources/css/style.css"> 
 </head>
 <style>
 .box {
@@ -32,7 +30,10 @@
 }
 .book-list input[type=button]{margin:10px 0; cursor:pointer; width:100%; text-align:center; padding:10px 0;}
 </style>
+
 <body>
+<%@include file ="header.jsp" %>
+<div class="wrap">
    <h1 class=top>관리자 모드</h1>
    <div class="box_tab">
       <ul>
@@ -53,6 +54,7 @@
          <td class=btn><input type=button id=member name=member value="회원관리"></td>      
       </tr>
    </table>
+</div>
 </body>
 <script>
 $(document)
