@@ -97,7 +97,7 @@ public class MController {
 	}
 	@RequestMapping("/addInfo") //룸 insert
 	public String addInfo(HttpServletRequest hsr) {
-		String strCode=hsr.getParameter("id");
+		  String strCode=hsr.getParameter("id");
 	      String name=hsr.getParameter("name");
 	      int type=Integer.parseInt(hsr.getParameter("type"));
 	      int howmany=Integer.parseInt(hsr.getParameter("howmany"));

@@ -25,12 +25,30 @@
    margin-top:50px;
 }
 .box_tab ul li{
-/*    margin-left:700px; */
    list-style:none;
    float:left;
+   margin-right:50px;
+   
 }
-.wrap {
-/* 	margin-left:705px; */
+.box_tab {
+	margin-left:500px;
+	font-size:25px;
+}
+.box_tab ul li {
+	display:inline;
+	box-sizing: border-box;
+    border: 1px solid #ddd;
+    background-color:#aaaaaa;
+    border-radius: 4px;
+}
+.box_tab ul li a {
+    color:white;
+    padding:20px;
+		
+}
+div.wrap {
+	padding-top:150px;
+
 }
 .book-list input[type=button]{margin:10px 0; cursor:pointer; width:100%; text-align:center; padding:10px 0;}
 </style>
