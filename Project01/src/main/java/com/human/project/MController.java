@@ -26,9 +26,25 @@ public class MController {
 	public String Manage() {
 		return "manage";
 	}
-	@RequestMapping("/room") //room 웹페이지
+	@RequestMapping("/room") //디럭스 room 웹페이지
 	public String Room() {
 		return "room";
+	}
+	@RequestMapping("/room2") //스위트room 웹페이지
+	public String SuiteRoom() {
+		return "room2";
+	}
+	@RequestMapping("/room3") //트윈 room 웹페이지
+	public String TwinRoom() {
+		return "room3";
+	}
+	@RequestMapping("/room4") //더블 room 웹페이지
+	public String DoubleRoom() {
+		return "room4";
+	}
+	@RequestMapping("/room5") //패밀리 room 웹페이지
+	public String FamilyRoom() {
+		return "room5";
 	}
 	@RequestMapping("/roomtype") //roomtype 웹페이지
 	public String RoomType() {
@@ -79,7 +95,7 @@ public class MController {
 		}
 		return ja.toString();
 	}
-	@RequestMapping("/addInfo")
+	@RequestMapping("/addInfo") //룸 insert
 	public String addInfo(HttpServletRequest hsr) {
 		String strCode=hsr.getParameter("id");
 	      String name=hsr.getParameter("name");
@@ -96,7 +112,7 @@ public class MController {
 	      }
 	      return "redirect:/roominfo";
 	}
-	@RequestMapping("/delInfo")
+	@RequestMapping("/delInfo") //룸 delete
 	public String delInfo(HttpServletRequest hsr) {
 		int code=Integer.parseInt(hsr.getParameter("id"));
 		
