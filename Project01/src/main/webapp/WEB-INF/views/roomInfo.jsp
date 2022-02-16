@@ -10,27 +10,37 @@
 <link rel="stylesheet" href="${path}/resources/css/style.css"> 
 </head>
 <style>
+input {
+	box-sizing: border-box;
+    border: 1px solid #ddd;
+ 	padding: 5px; 
+}
+ input.btn { 
+/*  	box-sizing: border-box;  */
+     background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59)); 
+/*  	padding: 5px;  */
+ } 
 table {
 	border-collapse: collapse;
 	text-align:center;
+	box-sizing: border-box;
+    border: 1px solid #ddd;
+	
 }
 td {
-	border:1px solid black;
-	text-align:center;
+/* 	border:1px solid black; */
+/* 	text-align:center; */
+/* 	box-sizing: border-box; */
+/*     border: 1px solid #ddd; */
 }
-tr.tr1 {
-	position:absolute;
-    left:50%;
-    top:50%;
-    margin-left:-110px;
-    margin-top:-70px;
-}
+
 td.td1 {
     position:absolute;
     left:50%;
     top:50%;
     margin-left:-300px;
     margin-top:-40px;
+    
 }
 table.table1 {
     position:absolute;
@@ -38,21 +48,24 @@ table.table1 {
     top:50%;
     margin-left:-299px;
     margin-top:150px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+}
+select {
+	box-sizing: border-box;
+    border: 1px solid #ddd;
 }
 </style>
 <body>
-<form action="/project/addInfo" id="frmAddRoom">
 <div class="wrap">
 <%@include file ="header.jsp" %>
 </div>
+<form action="/project/addInfo" id="frmAddRoom">
 <table>
-<tr class=tr1>
-<th>객실정보 보기</th>
-</tr>
 <tr>
-<td class=td1><select id=selRoom name=selRoom size=10 style='width:500px; background-color:honeydew'></select></td>
+<td class=td1><select id=selRoom name=selRoom size=10 style='width:500px;'></select></td>
 </tr>
-<tbody class=table1>
+<tbody>
         <table class=table1 style='width:500px;'>
             <input type=hidden id=id name=id>
                   <tr>
@@ -75,9 +88,10 @@ table.table1 {
                   </tr>
                   <tr>
                      <td colspan=2 align=center>
-                     <input type=submit value='추가'>
-                     <input type=button id=btnDelete name=btnDelete value=삭제>
-                     <input type=reset value=비우기>
+                     <input type=submit value='추가' class=btn>
+                     <input type=button id=btnDelete name=btnDelete value=삭제 class=btn>
+                     <input type=reset value=비우기 class=btn>
+                     <input type=button id=btnPlus name=btnPlus value=룸추가 class=btn>
                      </td>
                  </tr>
 			</table>
@@ -97,7 +111,9 @@ $(document)
 		   success:function(txt){
 			   console.log(txt);
 			   for(i=0; i < txt.length; i++){
-				   let str='<option value='+txt[i]['id']+'>'+txt[i]['name']+','+txt[i]['room_type']+','+txt[i]['howmany']+','+txt[i]['howmuch']+','+txt[i]['type_name']+'</option>';
+				   let str='<option value='+txt[i]['id']+'>'+txt[i]['name']+','+txt[i]['room_type']+
+				   ','+txt[i]['howmany']+','+txt[i]['howmuch']+','+
+				   txt[i]['type_name']+'</option>';
 				$('#selRoom').append(str);   
 			   }
 		   }
@@ -132,6 +148,10 @@ $(document)
 	document.location=url;
 	return false;
 })
+.on('click','#btnPlus',function(){
+	document.location='/project/roomtype';
+	return false;
+})
 .on('click','#selRoom option',function(){
 	console.log($(this).val()+','+$(this).text());
 	$('#id').val($(this).val());
@@ -151,6 +171,6 @@ $(document)
      })
 	return false;
 })
-;
+
 </script>
 </html>

@@ -76,16 +76,16 @@
 .bath_room {
 	font-size:19px;
 	margin-left:800px;
-	margin-top:-147px;
+	margin-top:-150px;
 }
 .bath_room_list {
 	margin-left:800px;
-    margin-top:50px;
+    margin-top:55px;
 }
 .etc {
 	font-size:19px;
 	margin-left:1100px;
-	margin-top:-170px;
+	margin-top:-175px;
 }
 .etc_list {
 	margin-left:1100px;
@@ -115,18 +115,21 @@
 	<%@include file ="header.jsp" %>
 </div>
 <div
-      style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff; margin-left:186px"
+      style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
       class="swiper mySwiper2"
     >
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img src="resources/images/deluxe2.jpg" />
+          <img src="resources/images/twin.jpg" />
         </div>
         <div class="swiper-slide">
-          <img src="resources/images/deluxe3.jpg" />
+          <img src="resources/images/twin2.jpg" />
         </div>
         <div class="swiper-slide">
-          <img src="resources/images/deluxe4.jpg" />
+          <img src="resources/images/twin3.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="resources/images/twin4.jpg" />
         </div>  
 		<div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
@@ -134,23 +137,26 @@
       <div thumbsSlider="" class="swiper mySwiper">
       <div class="swiper-wrapper">
 	        <div class="swiper-slide">
-	          <img src="resources/images/deluxe2.jpg" />
-	        </div>
-	        <div class="swiper-slide">
-	          <img src="resources/images/deluxe3.jpg" />
-	        </div>
-	        <div class="swiper-slide">
-	          <img src="resources/images/deluxe4.jpg" />
-	        </div>
+          <img src="resources/images/twin.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="resources/images/twin2.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="resources/images/twin3.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="resources/images/twin4.jpg" />
+        </div> 
 	      </div>
      </div>
     </div>
 <table align=center class=table1>
-<tr><th class=room_info>Deluxe Room<hr></th></tr>
-<tr><td style='font-weight:bold;'>객실명</td><td>101호</td></tr>
-<tr><td style='font-weight:bold;'>객실종류</td><td>디럭스</td></tr>
-<tr><td style='font-weight:bold;'>최대숙박인원</td><td>2</td></tr>
-<tr><td style='font-weight:bold;'>숙박비</td><td>50,000원</td></tr>
+<tr><th class=room_info>Twin Room<hr></th></tr>
+<tr><td style='font-weight:bold;'>객실명</td><td>103호</td></tr>
+<tr><td style='font-weight:bold;'>객실종류</td><td>트윈</td></tr>
+<tr><td style='font-weight:bold;'>최대숙박인원</td><td>3</td></tr>
+<tr><td style='font-weight:bold;'>숙박비</td><td>70,000원</td></tr>
 <tr><td style='font-weight:bold;'>체크인/체크아웃</td><td>15:00/12:00</td></tr>
 </table>
 <table align=center class=table2>

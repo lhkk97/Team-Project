@@ -1,23 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="true" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원관리</title>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css"/>
+<link rel="stylesheet" href="${path}/resources/css/style.css"> 
 </head>
 <style>
 table {border-collapse:collapse;}
 tr,td,th{
-	border:1px solid black;
+	box-sizing: border-box;
+    border: 1px solid #ddd;
+}
+input {
+	box-sizing: border-box;
+    border: 1px solid #ddd;
+}
+#tblMember {
+	margin-left:450px;
+	margin-top:50px;
+}
+input.btn {
+	margin-left:700px;
 }
 </style>
 <body>
+<div class="wrap">
+	<%@include file ="header.jsp" %>
+</div>
 <div>
 <table id=tblMember></table>
 </div><br>
-<div><input type=button id=deleteBtn value="선택삭제"></div>
+<div><input type=button id=deleteBtn value="선택삭제" class=btn></div>
 
 <div id=dlgType style='display:none;'>
 <table>
