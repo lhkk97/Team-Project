@@ -51,6 +51,29 @@ public class HController {
 		return ja.toString();
 	}
 	
+	// 회원 삭제
+	@ResponseBody
+	@RequestMapping(value = "/deleteMember", method = RequestMethod.POST)
+	public String Member(HttpServletRequest hsr) {
+		String check=hsr.getParameter("check");
+		String[] userid=check.split(",");
+		
+		String str="";
+		try {
+			iMember member=sqlSession.getMapper(iMember.class);
+			
+			for(int i=0;i<userid.length;i++) {
+				System.out.println("["+userid[i]+"]");
+				member.deleteMember(userid[i]);
+			}
+			str="ok";
+		} catch(Exception e) {
+			str="fail";
+		}
+		System.out.println(str);
+		return str;
+	}
+	
 	// 등급 수정 dialog -> select
 	@ResponseBody
 	@RequestMapping(value = "/dlgType", produces="application/json;charset=utf-8")
@@ -68,6 +91,25 @@ public class HController {
 		return ja.toString();
 	}
 	
+	// dialog input 
+	@ResponseBody
+	@RequestMapping(value = "/getMember",produces="application/json;charset=utf-8")
+	public String getMember(HttpServletRequest hsr) {		
+		iMember type=sqlSession.getMapper(iMember.class);
+		ArrayList<MemberType> alType=type.getMember();
+		
+		JSONArray ja=new JSONArray();
+		for(int i=0; i<alType.size(); i++) {
+			JSONObject jo=new JSONObject();
+			jo.put("userid",alType.get(i).getUserid());
+			jo.put("m_code",alType.get(i).getCode());
+			jo.put("m_type",alType.get(i).getType());
+			ja.add(jo);
+		}
+		return ja.toString();
+	}
+	
+	// update(등급 수정)
 	@ResponseBody
 	@RequestMapping(value="/updateType", method=RequestMethod.POST)
 	public String updatType(HttpServletRequest hsr) {
@@ -118,6 +160,10 @@ public class HController {
 //			System.out.println("login Passcode: "+passcode);
 			
 			if(m.get(i).getPasscode().equals(passcode)&&m.get(i).getUserid().equals(userid)) {
+				System.out.println("["+m.get(i).getMember_type()+"]");
+				if(m.get(i).getMember_type().equals("관리자")) {
+					session.setAttribute("m_type","관리자");
+				}
 				str="ok";
 				break;
 			} else {
