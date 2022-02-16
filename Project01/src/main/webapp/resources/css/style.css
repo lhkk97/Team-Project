@@ -55,8 +55,8 @@ section{max-width:1200px; margin:0 auto; }/*height:100vh;*/
 .book-list .option ul{position:absolute; right:0; top:100%; border:1px solid #ccc; box-sizing:border-box; background:#fff; width:160px; box-shadow:0px 0px 10px 1px rgb(0 0 0 / 10%);}
 .book-list .option ul li{font-weight:300; text-align:right;height:auto; padding:5px 20px 5px 0; box-sizing:border-box; background:#fff; width:100%; line-height:1.2; white-space:nowrap; cursor:pointer;}
 .book-list .option ul li:last-child{border-bottom:0;}
-.getRoomList{width:100%; border-collapse:collapse;}
-.getRoomList th{border:1px solid #ccc; padding:6px 0;}
-.getRoomList tbody tr{cursor:pointer;}
-.getRoomList tbody tr:hover{background:#f2f2f2;}
-.getRoomList tbody tr td{text-align:center; padding:5px; box-sizing:border-box;}
+#getRoomList{width:100%; border-collapse:collapse;}
+#getRoomList th{border:1px solid #ccc; padding:6px 0;}
+#getRoomList tbody tr{cursor:pointer;}
+#getRoomList tbody tr:hover{background:#f2f2f2;}
+#getRoomList tbody tr td{text-align:center; padding:5px; box-sizing:border-box;}
