@@ -19,10 +19,20 @@ table {
     left:50%;
     top:50%;
     margin-left:-190px;
-    margin-top:-100px;
+    margin-top:-20px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+	
 }
 td {
-	border:1px solid black;
+	box-sizing: border-box;
+    border: 1px solid #ddd;
+	
+}
+input.btn{
+	box-sizing: border-box;
+    border: 1px solid #ddd;
+	
 }
 </style>
 <body>
@@ -32,13 +42,16 @@ td {
 <form action="/project/addType" id="frmAddType">
 <table>
 <tr>
-<td>타입코드:</td><td><input type=number name=type_code></td>
+<td>타입코드:</td><td><input type=number name=type_code class=btn></td>
 </tr>
 <tr>
-<td>객실타입명:</td><td><input type=text name=type_name></td>
+<td>객실타입명:</td><td><input type=text name=type_name class=btn></td>
 </tr>
 <tr>
-<td colspan=2 align=center><input type=submit value="추가"></td>
+<td colspan=2 align=center>
+<input type=submit value="추가" class=btn>
+<input type=button value="되돌아가기" name= btnCancel id=btnCancel class=btn>		
+</td>
 </tr>
 </table>
 </form>
@@ -52,6 +65,11 @@ $(document)
       return false;
    }
    return true;
-});
+})
+.on('click','#btnCancel',function(){
+	document.location="/project/roominfo";
+	return false;
+})
+;
 </script>
 </html>
