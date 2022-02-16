@@ -1,8 +1,10 @@
 package com.human.project;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -49,36 +51,50 @@ public class HController {
 		return ja.toString();
 	}
 	
-	// dialog 회원관리 -> 아마 등급 수정으로 바꿀 듯
-//	@ResponseBody
-//	@RequestMapping(value = "/dlgList", produces="application/json;charset=utf-8")
-//	public String memberList(HttpServletRequest hsr) {
-//		String keyword=hsr.getParameter("kw");
-//		if(keyword.equals("")) return "";
-//		
-//		iMember member=sqlSession.getMapper(iMember.class);
-//		ArrayList<Member> alMember=member.dlgList(keyword);
-//		System.out.println(alMember);
-//		JSONArray ja=new JSONArray();
-//		for(int i=0; i<alMember.size(); i++) {
-//			JSONObject jo=new JSONObject();
-//			jo.put("name",alMember.get(i).getName());
-//			jo.put("gender",alMember.get(i).getGender());
-//			jo.put("mobile",alMember.get(i).getMobile());
-//			jo.put("id",alMember.get(i).getUserid());
-//			jo.put("m_type",alMember.get(i).getMember_type());
-//			ja.add(jo);
-//		}
-//		return ja.toString();
-//	}
+	// 등급 수정 dialog -> select
+	@ResponseBody
+	@RequestMapping(value = "/dlgType", produces="application/json;charset=utf-8")
+	public String memberList(HttpServletRequest hsr) {		
+		iMember type=sqlSession.getMapper(iMember.class);
+		ArrayList<MemberType> alType=type.dlgList();
+		
+		JSONArray ja=new JSONArray();
+		for(int i=0; i<alType.size(); i++) {
+			JSONObject jo=new JSONObject();
+			jo.put("m_code",alType.get(i).getCode());
+			jo.put("m_type",alType.get(i).getType());
+			ja.add(jo);
+		}
+		return ja.toString();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/updateType", method=RequestMethod.POST)
+	public String updatType(HttpServletRequest hsr) {
+		String retval="";
+		System.out.println("["+hsr.getParameter("userid")+"]");
+		System.out.println("["+hsr.getParameter("code")+"]");
+		
+		String userid=hsr.getParameter("userid");
+		int code=Integer.parseInt(hsr.getParameter("code"));
+		
+		try {
+			iMember type=sqlSession.getMapper(iMember.class);
+			type.updateType(userid,code);
+			retval="ok";
+		} catch(Exception e) {
+			retval="fail";
+		}
+		System.out.println(retval);
+		return retval;
+	}
+	
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(HttpSession session,Model model) {
-		String str="";
+	public String login(HttpSession session,Model model,RedirectAttributes rttr) {
 		if(session.getAttribute("userid")!=null) {
-			str="already_login";
-			model.addAttribute("already",str);
-			System.out.println(str);
+			rttr.addFlashAttribute("result", "already_login");
+			
 			return "redirect:/";
 		} else {
 			return "login";
