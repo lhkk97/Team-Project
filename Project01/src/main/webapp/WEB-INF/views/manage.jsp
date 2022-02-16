@@ -33,11 +33,7 @@
 .book-list input[type=button]{margin:10px 0; cursor:pointer; width:100%; text-align:center; padding:10px 0;}
 </style>
 <body>
-<<<<<<< HEAD
-
-=======
 	<h1 class=top>관리자 모드</h1>
-<<<<<<< HEAD
 	<div class="box_tab">
 		<ul>
 			<li><a href="#" id="box_tab01">예약관리</a></li>
@@ -50,7 +46,6 @@
 		<div class="box box_tab02"><%@include file = "roomInfo.jsp" %></div>
 		<div class="box box_tab03"><%@include file = "signon.jsp" %></div>
 	</div>
-=======
 	<table>
 		<tr>
 			<td class=btn><input type=button id=reserv name=reserv value="예약관리"></td>
@@ -58,8 +53,6 @@
 			<td class=btn><input type=button id=member name=member value="회원관리"></td>		
 		</tr>
 	</table>
->>>>>>> branch 'master' of https://github.com/lhkk97/Team-Project.git
->>>>>>> branch 'master' of https://github.com/lhkk97/Team-Project.git
 </body>
 <script>
 $(document)
