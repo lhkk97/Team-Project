@@ -111,7 +111,6 @@
 	.on('click','#return',function(){
 		document.location="/project/";
 		return false;
-	})
-	;
+	});
 </script>
 </html>
