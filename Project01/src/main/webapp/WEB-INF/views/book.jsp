@@ -4,7 +4,7 @@
 <%@ page session="true" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>- book -</title>
@@ -158,7 +158,7 @@
 					return false;
 				}
 				$('.option > ul').slideUp();
-			})
+		})
 		.on('click', '.option > ul > li', function(){
 			$('.option > p').text($(this).text()); 
 			$('.option > p').attr('data-value',$(this).attr('data-value'));

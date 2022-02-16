@@ -24,6 +24,22 @@
 	select name, mobile from member where userid = #{param1}
 </select>
 <select id="getReservation" resultType="com.human.project.Books">
-	select book_id, booker, room_id,
+	select a.book_id as id, a.booker, b.name,
+		b.mobile, c.name as roomname, d.type_name,
+		c.howmany, c.howmuch, to_char(a.in_date, 'YYYY-MM-DD') as in_date, to_char(a.out_date,'YYYY-MM-DD') as out_date
+	from book a, member b, room c, roomtype d
+	where a.booker = b.userid and a.room_id = c.id and c.room_type = d.type_code
 </select>
+<select id="loadbookList" resultType="com.human.project.Books">
+	<![CDATA[
+	select a.id, a.name, a.howmany, a.howmuch, b.type_name from room a, roomtype b, book c
+    where  a.room_type = b.type_code and a.id = c.room_id  and c.book_id = #{param1}
+	]]>
+</select>
+<update id="updateBook">
+	update book set booker = #{param2}, room_id = #{param3}, in_date = #{param4}, out_date = #{param5} where book_id = #{param1}
+</update>
+<delete id="deleteBook">
+	delete book where book_id=#{param1}
+</delete>
 </mapper>
