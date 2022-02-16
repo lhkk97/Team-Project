@@ -5,7 +5,7 @@
 <mapper namespace="com.human.project.iBoard">
 	<select id="listBoard" resultType="com.human.project.Board">
     	select bno,title,writer,regdate,updateDate from board
-    	order by bno
+    	order by updateDate desc
     </select>
     
     <select id="getBoard" resultType="com.human.project.Board">

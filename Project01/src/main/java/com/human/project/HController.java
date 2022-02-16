@@ -229,7 +229,9 @@ public class HController {
 	// !! 게시판 !!
 	// 게시판 등록
 	@RequestMapping("/insertBoard")
-	public String insertBoard() {
+	public String insertBoard(HttpSession session, Model model) {
+		String userid=(String)session.getAttribute("userid");
+		model.addAttribute("userid",userid);
 		return "b_insert";
 	}
 	@RequestMapping(value = "/insertBoard", method = RequestMethod.POST)

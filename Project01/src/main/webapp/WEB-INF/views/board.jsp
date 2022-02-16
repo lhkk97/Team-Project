@@ -2,15 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>게시판 목록</title>
+<link rel="stylesheet" href="${path}/resources/css/reset.css">
+<link rel="stylesheet" href="${path}/resources/css/style.css">
 </head>
  <style>
-	  h1 {
+	  h5 {
+	  	margin-top:12%;
 	  	margin-left:45%;
+	  	font-size:1.8rem;
 	  }
 	  a {
 	  	text-decoration : none;
@@ -35,7 +40,10 @@
 	  	font-weight: 700;
 	  }
 	  .table_wrap {
-	  	margin : 50px 0 0 40px;
+	  	margin : 20px 0 0 20px;
+	  }
+	  .table_wrap td, .table_wrap th {
+	  	vertical-align:middle;
 	  }
 	  .bno_width {
 	  	width: 12%;
@@ -50,12 +58,12 @@
 	  	width: 15%;
 	  }
 	  .write {
-	  	font-size: 20px;
-	    padding: 6px 12px;
+	  	font-size: 18px;
+	    padding: 5px 12px;
 	    background-color: #fff;
-	    border: 1px solid #ddd;
-	    font-weight: 600;
-	    margin-left:48%;
+	    border: 1px solid #000;
+ 	    font-weight:300;
+	    margin-left:60%;
 	  }
 	  
 	  .pageInfo{
@@ -75,9 +83,17 @@
 	  a:hover {color:black; text-decoration: underline;}
  </style>
 <body>
-<h1>게시판 목록</h1>
+<%@include file ="header.jsp" %>
+<h5>게시판 목록</h5>
 <div class="table_wrap" align=center>
-	<a href="/project/insertBoard" class="write">글쓰기</a>
+	<c:if test="${userid!=null}">
+		<a href="/project/insertBoard" class="write">글쓰기</a>
+	</c:if>
+	<c:if test="${userid==null}">
+		<script> 
+			alert("글쓰기는 로그인 후 가능합니다.");
+		</script>
+	</c:if>
 	<table>
 		<thead>
 			<tr>
