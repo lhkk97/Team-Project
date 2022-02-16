@@ -160,6 +160,10 @@ public class HController {
 //			System.out.println("login Passcode: "+passcode);
 			
 			if(m.get(i).getPasscode().equals(passcode)&&m.get(i).getUserid().equals(userid)) {
+				System.out.println("["+m.get(i).getMember_type()+"]");
+				if(m.get(i).getMember_type().equals("관리자")) {
+					session.setAttribute("m_type","관리자");
+				}
 				str="ok";
 				break;
 			} else {

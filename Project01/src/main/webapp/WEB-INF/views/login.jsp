@@ -47,6 +47,7 @@
 </body>
 <script src='https://code.jquery.com/jquery-3.5.0.js'></script>
 <script>
+$(document)
 // 로그인 -> 로그인버튼
 .on('click','#login',function() {
 	if($('#userid').val()=='') {
