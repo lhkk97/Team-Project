@@ -9,10 +9,6 @@
 <title>-login-</title>
 <link rel="stylesheet" href="${path}/resources/css/style.css">
 </head>
-<<<<<<< HEAD
-<body>
-	<div>
-=======
 <style>
 .b {
 	margin-left:45%;
@@ -26,7 +22,6 @@
 <%@include file ="header.jsp" %>
 <form method=post action="/project/login_check" id=frmLogin>
 	<div class="wrap">
->>>>>>> branch 'master' of https://github.com/lhkk97/Team-Project.git
 		<ul>
 			<li class=a><label for="userid">아이디</label></li>
 			<li class=b><input type="text" id="userid" name="userid"></li>
@@ -47,12 +42,6 @@
 <c:if test="${fail_user=='fail'}">
 	<script type="text/javascript">
 		alert("로그인에 실패했습니다. 아이디와 비밀번호를 다시 입력해주세요.");
-	</script>
-</c:if>
-<c:if test="${already=='already_login'}">
-console.log(${already});
-	<script type="text/javascript">
-		alert("로그아웃 후 로그인이 가능합니다.");
 	</script>
 </c:if>
 </body>

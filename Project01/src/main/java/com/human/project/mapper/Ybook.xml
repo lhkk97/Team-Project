@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.human.project.iYBook">
+	<select id="Book_doneList" resultType="com.human.project.Book_done">
+		select a.book_id, d.type_name, a.in_date, a.out_date, c.name, c.howmany,
+		a.booker, b.mobile, c.howmuch
+		from book a, member b, room c, roomtype d
+		where a.booker = b.name
+		and c.room_type = d.type_code
+		and a.room_id = c.id
+		order by a.book_id
+	</select>
+</mapper>

@@ -4,9 +4,11 @@
     
 <mapper namespace="com.human.project.iMember">
 <select id="memberList" resultType="com.human.project.Member">
-	select a.name, a.gender, a.userid, a.passcode, a.mobile, b.type as member_type, a.login_time, a.logout_time 
+	select a.name, a.gender, a.userid, a.passcode, a.mobile, nvl(b.type,'-') as member_type,
+			nvl(a.login_time,'-') as login_time, nvl(a.logout_time,'-') as logout_time 
 	from member a, membertype b
 	where a.member_type=b.code(+)
+	order by decode(a.member_type,1,1), a.name
 </select>
 <insert id="insertMember">
 	insert into member(name,gender,mobile,userid,passcode)
@@ -22,11 +24,22 @@
 	where userid=#{param3}
 </update>
 
-<!-- 회원관리 dlg list -->
-<select id="dlgList" resultType="com.human.project.Member">
-	select a.userid,a.name,a.gender,a.mobile,b.type as member_type
+<delete id="deleteMember">
+	delete member where userid=#{param1}
+</delete>
+
+<!-- 등급관리 dlg list -->
+<select id="dlgList" resultType="com.human.project.MemberType">
+	select code,type from membertype
+	order by code
+</select>
+<select id="getMember" resultType="com.human.project.MemberType">
+	select a.userid, b.code, nvl(b.type,'-') as type
 	from member a, membertype b
 	where a.member_type=b.code(+)
-	and userid=#{param1}
 </select>
+<update id="updateType">
+	update member set member_type=#{param2} where userid=#{param1}
+</update>
+
 </mapper>

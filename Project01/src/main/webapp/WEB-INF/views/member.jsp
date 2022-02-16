@@ -16,104 +16,155 @@ tr,td,th{
 <body>
 <div>
 <table id=tblMember></table>
-</div>
-<div style="float:right;">
-	<table>
-		<tr><td>
-			<input type='button' id=btnMember value="회원관리">
-		</td><tr>
-	</table>
-</div>
+</div><br>
+<div><input type=button id=deleteBtn value="선택삭제"></div>
 
-<div id=dlgMember style='display:none;'>
+<div id=dlgType style='display:none;'>
 <table>
-	<tr>
-		<td>아이디 : <input type=text id=keyword>
-			<input type="button" id=find value="찾기"></td>
-	</tr>
-	<tr>
-		<td>
-			<select id=selMember size=10 style='width:520px'></select>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<table>
-			<tr><td>아이디&nbsp;<input type=text id=d_id name=d_id></td></tr>
-			<tr><td>이름&nbsp;<input type=text id=d_name name=d_name></td></tr>
-			<tr><td>전화번호&nbsp;<input type=text id=d_mobile name=d_mobile></td></tr>
-			<tr><td>회원등급&nbsp;<input type=text id=d_type name=d_type></td></tr>
-			<tr><td align=right>
-				<button id=btnDone>완료</button>&nbsp;
-				<button id=btnEmpty>비우기</button>
-			</td></tr>
-			</table>
-		</td>
-	</tr>
+<tr>
+	<td>
+		<select id=selType size=10 style='width:220px'></select>
+	</td>
+	<td valign=top>
+		<table>
+		<tr><td>아이디&nbsp;<input type=text id=d_userid name=d_userid readonly></td></tr>
+		<tr><td>번호&nbsp;<input type=number id=d_code name=d_code></td></tr>
+		<tr><td>등급&nbsp;<input type=text id=d_type name=d_type></td></tr>
+		<tr><td align=right>
+			<button id=btnDone>완료</button>
+		</td></tr>
+		</table>
+	</td>
+</tr>
 </table>
 </div>
+
 </body>
 <script src="http://code.jquery.com/jquery-3.5.0.js"></script>
 <script src='https://code.jquery.com/ui/1.13.0/jquery-ui.js'></script>
 <script>
 $(document)
 .ready(function() {
-	$.ajax({url:"/project/memberList",data:{},datatype:"json",
-			method:"GET",
-			beforeSend:function() {
-				if(!confirm("회원정보를 가져오시겠습니까?")) return false;
-			},
+	memberList();
+})
+.on('click','#deleteBtn',function() {
+	if($('input[name=check]:checked').length==0) {
+		alert('하나 이상 체크하세요.');
+		return false;
+	}
+	let check='';
+	$('input[name=check]:checked').each(function() {
+		check+=$(this).val()+",";
+	});
+	console.log(check);
+	if(!confirm("정말 삭제하시겠습니까?")) return false;
+	$.ajax({url:'/project/deleteMember',data:{check:check},
+			method:'POST',datatype:'json',
 			success:function(txt) {
-				let head='<thead><tr><th></th><th>이름</th><th>성별</th><th>전화번호</th><th>아이디</th><th>비밀번호'
-						+'</th><th>등급</th><th>로그인시간</th><th>로그아웃시간</th></tr></thead>'
-				$('#tblMember').append(head);
 				console.log(txt);
-				for(i=0;i<txt.length;i++) {
-					let str='<tr><td>'+txt[i]['name']+'</td><td>'+txt[i]['gender']+
-							'</td><td>'+txt[i]['mobile']+'</td><td>'+txt[i]['id']+
-							'</td><td>'+txt[i]['pw']+'</td><td>'+txt[i]['m_type']+
-							'</td><td>'+txt[i]['login']+'</td><td>'+txt[i]['logout']+'</td></tr>';
-					$('#tblMember').append(str);
+				if(txt=="ok") {
+					alert('삭제 완료.');
+					document.location='/project/member';
+				} else {
+					alert('다시 삭제해주세요.');
 				}
 			}
 	});
 })
 
-.on('click','#btnMember',function() {
-	$('#dlgMember').dialog({
+// 등급 수정 버튼 눌렀을 때, 다이얼로그
+.on('click','#typeBtn',function() {
+	$('#d_userid').val($(this).attr('data-userid'));
+	$.ajax({url:'/project/getMember',data:{},method:'GET',datatype:'json',
+		success:function(txt) {
+			let id=""
+			for(i=0;i<txt.length;i++) {
+				id=txt[i]['userid'];
+				if($('#d_userid').val()==id) {
+					$('#d_code').val(txt[i]['m_code']);
+					$('#d_type').val(txt[i]['m_type']);
+				}
+			}	
+		}
+	});
+	$('#dlgType').dialog({
 		modal:true,
-		width:700,
+		width:450,
 		open:function(){
-			$.ajax({url:"/project/memberList",data:{},datatype:"json",
-				method:"GET",
+			$('#selType').empty();
+			$.ajax({url:'/project/dlgType',data:{},method:'POST',datatype:'json',
 				success:function(txt) {
 					for(i=0;i<txt.length;i++) {
-	 					let str='<option>'+txt[i]['id']+','+txt[i]['name']+','+txt[i]['gender']+
-	 							','+txt[i]['mobile']+','+txt[i]['m_type']+'</option>';
-						$('#selMember').append(str);
-					}
+						let str='<option>'+txt[i]['m_code']+' '+txt[i]['m_type']+'</option>';
+						$('#selType').append(str);
+					}	
 				}
 			});
 		},
 		close:function(){
-		
+			$('#d_code,#d_type').val('');
 		}
 	});
 	return false;
 })
 
-.on('click','#find',function() {
-	$.ajax({url:"/project/dlgList",data:{kw:$('#keyword').val()},datatype:"json",
-		method:"GET",
+// 다이얼로그 내 select option
+.on('click','#selType option',function() {
+	let txt=$(this).text();
+	let ar=txt.split(' ');
+	$('#d_code').val($.trim(ar[0]));
+	$('#d_type').val($.trim(ar[1]));
+	return false;
+})
+
+// 등급 수정 다이얼로그 완료 버튼
+.on('click','#btnDone',function() {	
+	if($('#d_userid').val()=='') {
+		alert("아이디를 입력하세요");
+		return false;
+	}
+	if($('#d_code').val()=='') {
+		alert("번호를 입력하세요");
+		return false;
+	}
+	if($('#d_type').val()=='') {
+		alert("등급을 입력하세요");
+		return false;
+	}
+	let oParam={userid:$('#d_userid').val(),code:$('#d_code').val()};
+	$.ajax({url:'/project/updateType',data:oParam,method:'POST',datatype:'json',
 		success:function(txt) {
-			$('#selMember').empty();
-			for(i=0;i<txt.length;i++) {
-					let str='<option>'+txt[i]['id']+','+txt[i]['name']+','+txt[i]['gender']+
-							','+txt[i]['mobile']+','+txt[i]['m_type']+'</option>';
-				$('#selMember').append(str);
+	 		if(txt=="ok") {
+	 			$('#tblMember').empty();
+				memberList();
+				alert('수정 완료했습니다.');
+			} else {
+				alert('등급 업데이트에 실패했습니다.');
 			}
 		}
 	});
+	$('#dlgType').dialog('close');
 })
+
+function memberList() {
+	$.ajax({url:"/project/memberList",data:{},datatype:"json",
+		method:"GET",
+		success:function(txt) {
+			let head='<thead><tr><th></th><th>이름</th><th>성별</th><th>전화번호</th><th>아이디</th><th>비밀번호'
+					+'</th><th>등급</th><th>로그인시간</th><th>로그아웃시간</th></tr></thead>'
+			$('#tblMember').append(head);
+			
+			for(i=0;i<txt.length;i++) {
+				let check='<tr><td><input type="checkbox" name="check" value="'+txt[i]['id']+'"></td>'
+				let str='<td>'+txt[i]['name']+'</td><td>'+txt[i]['gender']+'</td><td>'
+						+txt[i]['mobile']+'</td><td>'+txt[i]['id']+'</td><td>'+txt[i]['pw']
+						+'</td><td id=memberType>'+txt[i]['m_type']
+						+'</td><td>'+txt[i]['login']+'</td><td>'+txt[i]['logout']+'</td>';
+				let btn='<td><input type="button" id=typeBtn value="등급 수정" data-userid='+txt[i]['id']+'></td><tr>'
+				$('#tblMember').append(check+str+btn);
+			}
+		}
+	});
+}
 </script>
 </html>
