@@ -16,9 +16,9 @@
 	margin-top:5%;
 }
 </style>
+<%-- <%@include file ="header.jsp" %> --%>
 <body>
 	<div>
-	<%@include file ="header.jsp" %>
 		<ul>
 			<li class=a><label for="name">이름</label></li>
 			<li class=b><input type="text" id="name"></li>

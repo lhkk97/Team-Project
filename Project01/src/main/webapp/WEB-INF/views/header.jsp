@@ -7,11 +7,19 @@
 		</form>
 		<ul>
 			<c:if test="${userid==null}">
-				<li><a href="/project/signon">회원가입</a></li><li><a href="/project/login">로그인</a></li>
+				<li><a href="/project/login">로그인</a></li><li><a href="/project/signon">회원가입</a></li>
 			</c:if>
 			<c:if test="${userid!=null}">
-				<li><a href="#" onclick="if(confirm('로그아웃하시겠습니까?')){javascript:document.frm.submit();return false;}">로그아웃</a></li><li>${userid}</li>
-			</c:if>
+				<c:if test="${m_type=='관리자'}">
+					<li><a href="#" onclick="if(confirm('로그아웃하시겠습니까?')){javascript:document.frm.submit();return false;}">로그아웃</a></li>
+					<li><a href="/project/manage">(관리자페이지)</a></li>
+					<li>${userid}</li>	
+				</c:if>
+				<c:if test="${m_type!='관리자'}">
+					<li><a href="#" onclick="if(confirm('로그아웃하시겠습니까?')){javascript:document.frm.submit();return false;}">로그아웃</a></li>
+					<li>${userid}</li>
+				</c:if>
+			</c:if>		
 		</ul>
 	</div>
 	<div class="header">
