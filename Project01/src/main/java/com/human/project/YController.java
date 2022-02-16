@@ -47,10 +47,10 @@ public class YController {
 		return ja.toString();
 	}
 	
-	@RequestMapping("/book_done")
-	public String book_done() {
-		
-		return "book_done";
-	}
+//	@RequestMapping("/book_done")
+//	public String book_done() {
+//		
+//		return "book_done";
+//	}
 		
 }
