@@ -2,14 +2,16 @@ package com.human.project;
 
 public class Books {
 	private int id;
+	private String booker;
 	private String name;
 	private int howmany;
 	private int howmuch;
 	private String type_name;
 	public Books() {
 	}
-	public Books(int id, String name, int howmany, int howmuch, String type_name) {
+	public Books(int id, String booker, String name, int howmany, int howmuch, String type_name) {
 		this.id = id;
+		this.booker = booker;
 		this.name = name;
 		this.howmany = howmany;
 		this.howmuch = howmuch;
@@ -20,6 +22,12 @@ public class Books {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getBooker() {
+		return booker;
+	}
+	public void setBooker(String booker) {
+		this.booker = booker;
 	}
 	public String getName() {
 		return name;
@@ -45,5 +53,7 @@ public class Books {
 	public void setType_name(String type_name) {
 		this.type_name = type_name;
 	}
+
+
 	
 }

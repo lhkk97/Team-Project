@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.human.project.iRez">
+	<select id="getRezList" resultType="com.human.project.Reservation">
+		select a.book_id, b.name, b.mobile, c.room_type, c.howmany, c.howmuch, a.in_date, a.out_date
+		from book a, member b, room c
+		where a.booker = b.name
+		and a.room_id=c.room_type
+	</select>
+	<!-- 
+	 <insert id="addRez">
+		insert into book(book_id, booker, room_id) values(#{param1},#{param2},#{param3});
+	</insert>
+	 -->
+</mapper>

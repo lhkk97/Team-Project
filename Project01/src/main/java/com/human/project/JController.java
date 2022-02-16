@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -23,13 +24,21 @@ public class JController {
 	private SqlSession sqlSession;
 	
 	@RequestMapping("/book")
-	public String book_done(HttpServletRequest hsr, Model model) {
+	public String book_done(HttpServletRequest hsr, Model model, RedirectAttributes rttr) {
 		HttpSession session = hsr.getSession();
-		session.getAttribute("userid");
+		String userid = (String) session.getAttribute("userid");
+		
 		iJBook ibook = sqlSession.getMapper(iJBook.class);
 		ArrayList<RoomtypeList> roomtypeList = ibook.roomtypeList();
 		model.addAttribute("roomtypeList", roomtypeList);
-		return "book";
+		if(session.getAttribute("userid") != null) {
+			Member userSession = ibook.getBookSession(userid);
+			model.addAttribute("userSession", userSession);
+			return "book";
+		} else {
+			rttr.addFlashAttribute("result", "do_login");
+			return "redirect:/";
+		}
 	}
 	
 	@ResponseBody
@@ -56,14 +65,14 @@ public class JController {
 	}
 	@RequestMapping(value="/insertBook", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	public String insertBook(HttpServletRequest hsr, Model model) {
+		HttpSession session = hsr.getSession();
 		String roomid = hsr.getParameter("roomid");
 		String in_date = hsr.getParameter("in_date");
 		String out_date = hsr.getParameter("out_date");
-		String booker = hsr.getParameter("booker");
+		String booker = (String) session.getAttribute("userid");
 		
 		iJBook ibook = sqlSession.getMapper(iJBook.class);
 		ibook.insertBook(booker, roomid, in_date, out_date);
-		
 		
 		// book_done 출력용
 //		String roomtype = hsr.getParameter("roomtype");
@@ -81,9 +90,15 @@ public class JController {
 //		model.addAttribute(howmuch, "howmuch");
 		return "book_done";
 	}
+	
 	@RequestMapping("/book_done")
 	public String book_done() {
 		
 		return "book_done";
+	}
+	
+	@RequestMapping("/reservation")
+	public String reservation() {
+		return "reservation";
 	}
 }

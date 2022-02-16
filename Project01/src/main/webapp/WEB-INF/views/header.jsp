@@ -45,6 +45,15 @@
 				</ul>
 				 -->
 			</li>
-			<li><a href="/project/book">실시간예약</a></li>
+			<li><a id="sub_4" href="/project/book">실시간예약</a></li>
 		</ul>
 	</div>
+	<script>
+		$(document)
+		.on('click','#sub_4', function() {
+			let result = '${result}';
+			if(result === 'do_login'){
+				alert('로그인 후 이용 가능합니다.');
+			}
+		});
+	</script>
