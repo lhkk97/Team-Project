@@ -15,7 +15,6 @@ table {
 	border:1px solid black;
 	border-collapse:collapse;
 	text-align:center;
-	font-family:serif;
 	position:absolute;
     left:50%;
     top:50%;

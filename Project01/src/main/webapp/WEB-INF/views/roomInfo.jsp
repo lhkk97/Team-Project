@@ -50,7 +50,7 @@ table.table1 {
 <th>객실정보 보기</th>
 </tr>
 <tr>
-<td class=td1><select id=selRoom name=selRoom size=10 style='width:500px; background-color:honeydew'></select></td>
+<td class=td1><select id=selRoom name=selRoom size=10 style='width:500px;'></select></td>
 </tr>
 <tbody class=table1>
         <table class=table1 style='width:500px;'>
@@ -78,6 +78,7 @@ table.table1 {
                      <input type=submit value='추가'>
                      <input type=button id=btnDelete name=btnDelete value=삭제>
                      <input type=reset value=비우기>
+                     <input type=button id=btnPlus name=btnPlus value=룸추가>
                      </td>
                  </tr>
 			</table>
@@ -130,6 +131,10 @@ $(document)
 	let url="/project/delInfo?id="+$('#id').val();
 	console.log(url);
 	document.location=url;
+	return false;
+})
+.on('click','#btnPlus',function(){
+	document.location='/project/roomtype';
 	return false;
 })
 .on('click','#selRoom option',function(){
