@@ -35,7 +35,7 @@
 			</li>
 			<li><a href="#">예약안내</a></li>
 			<li>
-				<a href="#">커뮤니티</a>
+				<a id="listBoard" href="/project/listBoard">커뮤니티</a>
 				<!-- 게시판 구현시 사용 -->
 				<!-- 
 				<ul>

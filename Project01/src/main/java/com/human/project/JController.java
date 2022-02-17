@@ -91,12 +91,12 @@ public class JController {
 		return "book_done";
 	}
 	
-	@RequestMapping("/book_done")
-	public String book_done() {
-		
-		return "book_done";
-	}
-	
+//	@RequestMapping("/book_done")
+//	public String book_done() {
+//		
+//		return "book_done";
+//	}
+//	
 	@RequestMapping("/reservation")
 	public String reservation(Model model) {
 		iJBook ibook = sqlSession.getMapper(iJBook.class);

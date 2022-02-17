@@ -124,6 +124,7 @@
 					$('#getRoomList tbody').empty();
 					$('.option p').text('객실 종류 선택');
 					$('.option p').attr('data-value', '');
+					return false;
 // 					console.log("["+$('.option p').attr('data-value')+"]");
 				}
 			})
@@ -135,8 +136,7 @@
 					return false;
 				}
 				loadList(title);
-// 				loadMyList(title);
-				
+				loadMyList(title);
 			})
 			return false;
 		})
@@ -214,7 +214,6 @@
 								  + data[i]['howmuch'] + '</td></tr>';
 						$('#getRoomList tbody').append(str);
 					}
-					loadMyList(title);
 				}
 			});
 		};
