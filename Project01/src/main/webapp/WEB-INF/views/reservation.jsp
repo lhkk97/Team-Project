@@ -124,22 +124,23 @@
 					$('#getRoomList tbody').empty();
 					$('.option p').text('객실 종류 선택');
 					$('.option p').attr('data-value', '');
+					return false;
 // 					console.log("["+$('.option p').attr('data-value')+"]");
 				}
 			})
-
+			.on('click', '#btnView', function(){
+				$('#getRoomList tbody').empty();
+				console.log("["+$('.option p').attr('data-value')+"]");
+				if($('.option p').attr('data-value') == ''){
+					alert('객실 종류를 선택해주세요.');
+					return false;
+				}
+				loadList(title);
+				loadMyList(title);
+			})
 			return false;
 		})
-		.on('click', '#btnView', function(){
-			$('#getRoomList tbody').empty();
-			console.log("["+$('.option p').attr('data-value')+"]");
-			if($('.option p').attr('data-value') == ''){
-				alert('객실 종류를 선택해주세요.');
-				return false;
-			}
-			loadList(title);
-// 			loadMyList(title);			
-		})
+
 		.on('click', '.option', function(){
 			$('.option > ul').slideToggle();
 			return false;
@@ -213,7 +214,6 @@
 								  + data[i]['howmuch'] + '</td></tr>';
 						$('#getRoomList tbody').append(str);
 					}
-					loadMyList(title);
 				}
 			});
 		};
