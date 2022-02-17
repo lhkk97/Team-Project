@@ -16,7 +16,7 @@
 	margin-top:5%;
 }
 </style>
-<%-- <%@include file ="header.jsp" %> --%>
+<%@include file ="header.jsp" %>
 <body>
 	<div>
 		<ul>

@@ -7,7 +7,7 @@
 		select a.book_id, d.type_name, a.in_date, a.out_date, c.name, c.howmany,
 		a.booker, b.mobile, c.howmuch
 		from book a, member b, room c, roomtype d
-		where a.booker = b.name
+		where a.booker = b.userid
 		and c.room_type = d.type_code
 		and a.room_id = c.id
 		order by a.book_id

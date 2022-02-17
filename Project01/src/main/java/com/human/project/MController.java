@@ -22,10 +22,7 @@ public class MController {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@RequestMapping("/manage")
-	public String Manage() {
-		return "manage";
-	}
+
 	@RequestMapping("/room") //디럭스 room 웹페이지
 	public String Room() {
 		return "room";

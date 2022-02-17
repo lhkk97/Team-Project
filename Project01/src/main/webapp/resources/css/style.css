@@ -1,10 +1,11 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;500&display=swap');
 /* 초기화 */
-* {margin:0; padding:0;}
+* {margin:0; padding:0;vertical-align:top;}
 html, input{font-size:16px; font-weight:normal; color:#333; letter-spacing:-0.5px;
 	font-family: 'Noto Sans KR', 'Malgun Gothic',sans-serif; font-weight:300;}
-input[type=button], input[type=submit]{font-weight:500;}
+input[type=button], input[type=submit], input[type=reset]{font-weight:500;}
+tr, th, td{border:1px solid #ccc;}
 body{font-size:inherit; font-weight:inherit;}
 h1, h2, h3, h4, h5, h6{font-size:inherit; font-weight:inherit; display:inline-block;}
 a{color:#333;text-decoration:none;}
@@ -14,25 +15,27 @@ li{list-style:none;}
 /* css 시작 */
 
 /* header */
-.top_header{width:100%; background:rgba(102,102,102,0.15); position:absolute; top:0; left:0; right:0; height:30px; line-height:30px;}
+.top_header{width:100%; background:rgba(102,102,102,0.15); height:30px; line-height:30px;}
 .top_header ul{width:1200px; margin:0 auto; font-weight:500;}
 .top_header li{float:right; margin-left:10px;}
 .top_header a{color:#666;}
 /**/
-.top_header.main{width:100%; background:rgba(255,255,255,0.15); position:absolute; top:0; left:0; right:0; height:30px; line-height:30px;}
+.top_header.main{width:100%; background:rgba(255,255,255,0.15); height:30px; line-height:30px;}
 .top_header.main a{color:#fff;}
-.header{position:absolute; left:50%; top:30px; transform:translateX(-50%); width:1200px; height:100px;
+.header{width:1200px; height:100px; margin:0 auto;
 	line-height:100px; border-bottom:1px solid rgba(102,102,102,0.5);}
 .header.main{border-bottom:1px solid rgba(255,255,255,0.5);}
 .header > logo {float:left;}
 .header > ul{float:right;}
 .header > ul > li {float:left; margin-left:20px; font-size:1.25rem; font-weight:500;}
+.header > ul > li a#sub_4{color:#aac117;}
 .header.main > ul > li > a{color:#fff;}
 .header.main > ul > li:nth-child(4) > a{color:#bfff13;}
+/* .heaer .sub_nav li {line-height:1; height:20px;} */
 
 
 /* body */
-.wrap{width:100%; padding-top:130px;}/*background:url('../images/bg.jpg') center no-repeat; height:100%;*/
+.wrap{width:100%; margin-top:50px;}/*background:url('../images/bg.jpg') center no-repeat; height:100%;*/
 section{max-width:1200px; margin:0 auto; }/*height:100vh;*/
 /* .wrap:first-child section{background:url('../images/bg.jpg') center no-repeat;} */
 
@@ -60,3 +63,30 @@ section{max-width:1200px; margin:0 auto; }/*height:100vh;*/
 #getRoomList tbody tr{cursor:pointer;}
 #getRoomList tbody tr:hover{background:#f2f2f2;}
 #getRoomList tbody tr td{text-align:center; padding:5px; box-sizing:border-box;}
+
+/* 객실정보 */
+.room_top{width:1200px; margin:0 auto;}
+.room_info_wrap{float:right;}
+.room_info{font-weight:500;}
+.room_info_wrap tr, .room_info_wrap th, .room_info_wrap td{border:none;}
+.room-slide{float:left;}
+
+
+/* 객실관리*/
+.box_tab li.on{border:none; background:#aac117;}
+.box_tab li.on a{color:#fff;}
+
+/**/
+
+.booking-list, .booking-list_btn{margin:0 auto; width:1000px;}
+.booking-list_btn{ text-align:right;}
+.booking-list{margin-top:100px;}
+.booking-list tr td{cursor:pointer;}
+.booking-list tr th, #tblMember tr th{font-weight:500; color:#666;}
+#tblMember tr th, #tblMember tr td, .booking-list tr th, .booking-list tr td{padding:7px 5px;}
+.booking-list tr:hover td{background:#f2f2f2;}
+
+
+/* 회원 관리 member.jsp */
+#tblMember{margin:100px auto 0; width:1000px;}
+

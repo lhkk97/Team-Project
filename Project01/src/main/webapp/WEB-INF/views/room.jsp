@@ -11,19 +11,21 @@
       content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
     />
 <title> - Room - </title>
+<link rel="stylesheet" href="${path}/resources/css/reset.css">
 <link rel="stylesheet" href="${path}/resources/css/style.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
 <link
       rel="stylesheet"
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
     />
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <style>
+.room_top{margin-top:100px;}
 .swiper {
 	flex-shrink:0;
-  	width: 500px;
+  	width: 650px;
   	margin-left:0;
-    margin-top:80px;
     background-size: contain;
     position:relative;
     transition-property:transform;
@@ -38,20 +40,19 @@
          position:relative;
       }
 .room_info {
-	font-size:25px;
+	font-size:1.5rem;
 }
 .Done {
 	border:1px solid black;
 	width:500px;
-	height:80px;
-	margin-left:870px;
-    margin-top:20px;
+	height:55px;
 }
 .table1 {
-	margin-left:900px;
-    margin-top:-500px;
-    width:600px;
+    width:500px;
     height:400px;
+}
+.table1 td:nth-child(2){
+	text-align:right;
 }
 .text1 {
 	margin-left:500px;
@@ -111,28 +112,15 @@
 }
 </style>
 <body>
+<%@include file ="header.jsp" %>
 <div class="wrap">
-	<%@include file ="header.jsp" %>
 </div>
-<div
-      style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff; margin-left:186px"
-      class="swiper mySwiper2"
-    >
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src="resources/images/deluxe2.jpg" />
-        </div>
-        <div class="swiper-slide">
-          <img src="resources/images/deluxe3.jpg" />
-        </div>
-        <div class="swiper-slide">
-          <img src="resources/images/deluxe4.jpg" />
-        </div>  
-		<div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      </div>
-      <div thumbsSlider="" class="swiper mySwiper">
-      <div class="swiper-wrapper">
+<div class="room_top fixed">
+	<div
+	      style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff;"
+	      class="swiper mySwiper2 room-slide"
+	    >
+	      <div class="swiper-wrapper">
 	        <div class="swiper-slide">
 	          <img src="resources/images/deluxe2.jpg" />
 	        </div>
@@ -141,21 +129,38 @@
 	        </div>
 	        <div class="swiper-slide">
 	          <img src="resources/images/deluxe4.jpg" />
-	        </div>
+	        </div>  
+			<div class="swiper-button-next"></div>
+	      <div class="swiper-button-prev"></div>
 	      </div>
-     </div>
-    </div>
-<table align=center class=table1>
-<tr><th class=room_info>Deluxe Room<hr></th></tr>
-<tr><td style='font-weight:bold;'>객실명</td><td>101호</td></tr>
-<tr><td style='font-weight:bold;'>객실종류</td><td>디럭스</td></tr>
-<tr><td style='font-weight:bold;'>최대숙박인원</td><td>2</td></tr>
-<tr><td style='font-weight:bold;'>숙박비</td><td>50,000원</td></tr>
-<tr><td style='font-weight:bold;'>체크인/체크아웃</td><td>15:00/12:00</td></tr>
-</table>
-<table align=center class=table2>
-<tr><td><input type=button id=btnDone name=btnDone value="실시간 예약하기" class="Done"></td></tr>
-</table>
+	      <div thumbsSlider="" class="swiper mySwiper">
+	      <div class="swiper-wrapper">
+		        <div class="swiper-slide">
+		          <img src="resources/images/deluxe2.jpg" />
+		        </div>
+		        <div class="swiper-slide">
+		          <img src="resources/images/deluxe3.jpg" />
+		        </div>
+		        <div class="swiper-slide">
+		          <img src="resources/images/deluxe4.jpg" />
+		        </div>
+		      </div>
+	     </div>
+	</div>
+	<div class="room_info_wrap">
+		<table align=center class=table1>
+		<tr><th class="room_info" colspan="2">Deluxe Room<hr></th></tr>
+		<tr><td style='font-weight:bold;'>객실명</td><td>101호</td></tr>
+		<tr><td style='font-weight:bold;'>객실종류</td><td>디럭스</td></tr>
+		<tr><td style='font-weight:bold;'>최대숙박인원</td><td>2</td></tr>
+		<tr><td style='font-weight:bold;'>숙박비</td><td>50,000원</td></tr>
+		<tr><td style='font-weight:bold;'>체크인/체크아웃</td><td>15:00/12:00</td></tr>
+		</table>
+		<table align=center class=table2>
+		<tr><td><input type=button id=btnDone name=btnDone value="실시간 예약하기" class="Done"></td></tr>
+		</table>
+	</div>
+</div>
 <h2 class="room_title">어메니티</h2>
 <div class="normal">일반</div>
 <div class="normal_list">

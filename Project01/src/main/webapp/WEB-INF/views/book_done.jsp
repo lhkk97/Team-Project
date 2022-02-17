@@ -15,8 +15,8 @@
 <style>
 </style>
 <body>
+	<%@ include file="header.jsp"%>
 	<div class="wrap" id="book" name="book">
-		<%@ include file="header.jsp"%>
 		<section>
 			<article>
 				<ul>
@@ -72,45 +72,43 @@
 			</article>
 		</section>
 	</div>
-</body>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script>
-	$(document)
-	.ready(function() {
-		$.ajax({
-			url : '/project/getBook_doneList',
-			data : {},
-			datatype : 'json',
-			method : 'GET',
-			beforeSend : function() {
-			},
-			success : function(txt) {
-
-				let book_id = txt[0]['book_id'];
-				let type_name = txt[0]['type_name'];
-				let in_date = txt[0]['in_date'];
-				let out_date = txt[0]['out_date'];
-				let name = txt[0]['name'];
-				let howmany = txt[0]['howmany'];
-				let mobile = txt[0]['mobile'];
-				let booker = txt[0]['booker'];
-				let howmuch = txt[0]['howmuch'];
-
-				$("#book_id").val(book_id);
-				$("#type_name").val(type_name);
-				$("#in_date").val(in_date);
-				$("#out_date").val(out_date);
-				$("#name").val(name);
-				$("#howmany").val(howmany);
-				$("#mobile").val(mobile);
-				$("#booker").val(booker);
-				$("#howmuch").val(howmuch);
-			}
+	<script>
+		$(document)
+		.ready(function() {
+			$.ajax({
+				url : '/project/getBook_doneList',
+				data : {},
+				datatype : 'json',
+				method : 'GET',
+				beforeSend : function() {
+				},
+				success : function(txt) {
+					let book_id = txt[0]['book_id'];
+					let type_name = txt[0]['type_name'];
+					let in_date = txt[0]['in_date'];
+					let out_date = txt[0]['out_date'];
+					let name = txt[0]['name'];
+					let howmany = txt[0]['howmany'];
+					let mobile = txt[0]['mobile'];
+					let booker = txt[0]['booker'];
+					let howmuch = txt[0]['howmuch'];
+	
+					$("#book_id").val(book_id);
+					$("#type_name").val(type_name);
+					$("#in_date").val(in_date);
+					$("#out_date").val(out_date);
+					$("#name").val(name);
+					$("#howmany").val(howmany);
+					$("#mobile").val(mobile);
+					$("#booker").val(booker);
+					$("#howmuch").val(howmuch);
+				}
+			})
 		})
-	})
-	.on('click','#return',function(){
-		document.location="/project/";
-		return false;
-	});
-</script>
+		.on('click','#return',function(){
+			document.location="/project/";
+			return false;
+		});
+	</script>
+</body>
 </html>
