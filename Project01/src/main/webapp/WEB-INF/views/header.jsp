@@ -12,7 +12,7 @@
 			<c:if test="${userid!=null}">
 				<c:if test="${m_type=='관리자'}">
 					<li><a href="#" onclick="if(confirm('로그아웃하시겠습니까?')){javascript:document.frm.submit();return false;}">로그아웃</a></li>
-					<li><a href="/project/manage">(관리자페이지)</a></li>
+					<li><a href="/project/manage">[관리자페이지]</a></li>
 					<li>${userid}</li>	
 				</c:if>
 				<c:if test="${m_type!='관리자'}">
@@ -26,11 +26,12 @@
 		<h1 class="logo"><a href="/project">LOGO</a></h1>
 		<ul class="fixed">
 			<li>
-				<a href="#">객실소개</a>
+				<a href="/project/room">객실소개</a>
 <!-- 				<ul class="sub_nav"> -->
 <!-- 					<li><a href="#">roomA</a></li> -->
 <!-- 					<li><a href="#">roomB</a></li> -->
 <!-- 					<li><a href="#">roomC</a></li> -->
+<!-- 					<li><a href="#">roomD</a></li> -->
 <!-- 				</ul> -->
 			</li>
 			<li><a href="#">예약안내</a></li>
@@ -45,7 +46,7 @@
 				</ul>
 				 -->
 			</li>
-			<li><a id="sub_4" href="/project/book">실시간예약</a></li>
+			<li><a id="sub_4" href="/project/sub04">실시간예약</a></li>
 		</ul>
 	</div>
 	<script>

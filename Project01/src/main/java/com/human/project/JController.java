@@ -23,15 +23,31 @@ public class JController {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@RequestMapping("/book")
-	public String book_done(HttpServletRequest hsr, Model model, RedirectAttributes rttr) {
+	@RequestMapping("/sub04")
+	public String sub04(HttpServletRequest hsr, Model model, RedirectAttributes rttr) {
 		HttpSession session = hsr.getSession();
 		String userid = (String) session.getAttribute("userid");
-		
-		iJBook ibook = sqlSession.getMapper(iJBook.class);
-		ArrayList<RoomtypeList> roomtypeList = ibook.roomtypeList();
-		model.addAttribute("roomtypeList", roomtypeList);
 		if(session.getAttribute("userid") != null) {
+			iJBook ibook = sqlSession.getMapper(iJBook.class);
+			ArrayList<RoomtypeList> roomtypeList = ibook.roomtypeList();
+			model.addAttribute("roomtypeList", roomtypeList);
+			Member userSession = ibook.getBookSession(userid);
+			model.addAttribute("userSession", userSession);
+			return "sub04";
+		} else {
+			rttr.addFlashAttribute("result", "do_login");
+			return "redirect:/";
+		}
+	}
+	
+	@RequestMapping("/book")
+	public String book(HttpServletRequest hsr, Model model, RedirectAttributes rttr) {
+		HttpSession session = hsr.getSession();
+		String userid = (String) session.getAttribute("userid");
+		if(session.getAttribute("userid") != null) {
+			iJBook ibook = sqlSession.getMapper(iJBook.class);
+			ArrayList<RoomtypeList> roomtypeList = ibook.roomtypeList();
+			model.addAttribute("roomtypeList", roomtypeList);
 			Member userSession = ibook.getBookSession(userid);
 			model.addAttribute("userSession", userSession);
 			return "book";
@@ -90,14 +106,15 @@ public class JController {
 //		model.addAttribute(howmuch, "howmuch");
 		return "book_done";
 	}
-	
+		
 //	@RequestMapping("/book_done")
 //	public String book_done() {
 //		
 //		return "book_done";
 //	}
 //	
-	@RequestMapping("/reservation")
+
+	@RequestMapping("/manage")
 	public String reservation(Model model) {
 		iJBook ibook = sqlSession.getMapper(iJBook.class);
 		
@@ -107,7 +124,7 @@ public class JController {
 		// 룸타입 출력
 		ArrayList<RoomtypeList> roomtypeList = ibook.roomtypeList();
 		model.addAttribute("roomtypeList", roomtypeList);
-		return "reservation";
+		return "manage";
 	}
 	@ResponseBody
 	@RequestMapping(value="/loadBookList", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
@@ -164,7 +181,7 @@ public class JController {
 		iJBook ibook = sqlSession.getMapper(iJBook.class);
 		ibook.updateBook(bookid, bookerId, roomid, in_date, out_date);
 		
-		return "redirect:/reservation";
+		return "redirect:/manage";
 	}
 	@ResponseBody
 	@RequestMapping(value = "/deleteBook", method = RequestMethod.POST)

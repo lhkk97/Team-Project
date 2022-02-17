@@ -3,14 +3,7 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원관리</title>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css"/>
-<link rel="stylesheet" href="${path}/resources/css/style.css"> 
-</head>
+
 <style>
 table {border-collapse:collapse;}
 tr,td,th{
@@ -21,22 +14,14 @@ input {
 	box-sizing: border-box;
     border: 1px solid #ddd;
 }
-#tblMember {
-	margin-left:450px;
-	margin-top:50px;
-}
 input.btn {
 	margin-left:700px;
 }
 </style>
-<body>
-<div class="wrap">
-	<%@include file ="header.jsp" %>
-</div>
 <div>
 <table id=tblMember></table>
 </div><br>
-<div><input type=button id=deleteBtn value="선택삭제" class=btn></div>
+<div class="booking-list_btn" ><input type=button id=deleteBtn value="선택삭제" class=btn></div>
 
 <div id=dlgType style='display:none;'>
 <table>
@@ -58,8 +43,6 @@ input.btn {
 </table>
 </div>
 
-</body>
-<script src="http://code.jquery.com/jquery-3.5.0.js"></script>
 <script src='https://code.jquery.com/ui/1.13.0/jquery-ui.js'></script>
 <script>
 $(document)
@@ -186,4 +169,3 @@ function memberList() {
 	});
 }
 </script>
-</html>

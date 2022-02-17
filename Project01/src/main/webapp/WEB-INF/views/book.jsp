@@ -1,20 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="true" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<title>- book -</title>
-<link rel="stylesheet" href="${path}/resources/css/reset.css">
-<link rel="stylesheet" href="${path}/resources/css/style.css">
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-</head>
-<body>
-	<div class="wrap">
-		<%@ include file ="header.jsp" %>
 		<section class="book-list">
 			<article>
 				<ul class="fixed">
@@ -43,7 +29,7 @@
 					<input type="button" id="btnView" value="예약 가능 객실 조회">
 				</div>
 				<div>
-					<table class="getRoomList">
+					<table id="getRoomList">
 						<thead>
 							<tr>
 								<th style="width:25%;">객실명</th><th style="width:35%;">객실종류</th>
@@ -101,7 +87,7 @@
 				</form>
 			</article>
 		</section>
-	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script>
 		// 체크인에 오늘 날짜 입력
 		let in_date= document.getElementById('in_date');
@@ -178,7 +164,7 @@
 				datatype : 'Json',
 				method : 'post',
 				beforeSend:function(){
-					$('.getRoomList tbody').empty();
+					$('#getRoomList tbody').empty();
 				},
 				success : function(data) {
 					for(i = 0; i < data.length; i++){
@@ -187,12 +173,12 @@
 								  + data[i]['type_name'] + '</td><td class="howmany">'
 								  + data[i]['howmany'] + '</td><td class="howmuch">'
 								  + data[i]['howmuch'] + '</td></tr>';
-						$('.getRoomList tbody').append(str);
+						$('#getRoomList tbody').append(str);
 					}
 				}
 			});
 		})
-		.on('click','.getRoomList tbody tr', function(){
+		.on('click','#getRoomList tbody tr', function(){
 			$('.get_roomtype').val($('.roomtype', this).text());
 			$('.get_in_date').val($('#in_date').val());
 			$('.get_out_date').val($('#out_date').val());
@@ -203,7 +189,4 @@
 // 			$('.get_mobile').val($('.howmany', this).text());
 			$('.get_howmuch').val($('.howmuch', this).text());
 		});
-// 		.on('click', '')
 	</script>
-</body>
-</html>

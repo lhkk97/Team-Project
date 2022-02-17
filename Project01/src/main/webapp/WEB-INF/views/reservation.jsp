@@ -3,25 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>- book -</title>
-<link rel="stylesheet" href="${path}/resources/css/reset.css">
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="${path}/resources/css/style.css">
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-<style>
-	.booking-list tr {cursor:pointer;}
-	.booking-list tr:hover{background:#f2f2f2;}
-	th, td{border:1px solid #ccc; padding:5px 7px; text-align:center;}
-
-</style>
-</head>
-<body>
-	<div class="wrap">
+	<div>
 		<div>
 			<table class="booking-list">
 				<thead>
@@ -43,7 +25,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<div><input type="button" id="deleteBtn" value="선택삭제"></div>
+			<div class="booking-list_btn"><input type="button" id="deleteBookBtn" value="선택삭제"></div>
 		</div>
 		<div id="dlgRU" style="display:none;">
 			<%@ include file ="reservation_update.jsp" %>
@@ -164,7 +146,7 @@
 			$('.get_howmany').val($('.howmany', this).text());
 			$('.get_howmuch').val($('.howmuch', this).text());
 		})
-		.on('click','#deleteBtn',function() {
+		.on('click','#deleteBookBtn',function() {
 			if($('input[name=check]:checked').length==0) {
 				alert('하나 이상 체크하세요.');
 				return false;
@@ -183,7 +165,7 @@
 					console.log(txt);
 					if(txt=="ok") {
 						alert('삭제 완료.');
-						document.location='/project/reservation';
+						document.location='/project/manage';
 					} else {
 						alert('다시 삭제해주세요.');
 					}
@@ -241,5 +223,3 @@
 			});
 		};
 	</script>
-</body>
-</html>
