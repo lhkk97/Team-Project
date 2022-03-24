@@ -96,82 +96,81 @@ select {
 		</table>
 	</div>
 </form>
+<script src="https://code.jquery.com/3-5.0.js"></script>
 <script>
-	$(document).ready(
-			function() {
-				$.ajax({
-					url : "/project/roomlist",
-					data : {},
-					datatype : 'json',
-					method : 'get',
-					beforeSend : function() {
-					},
-					success : function(txt) {
-						console.log(txt);
-						for (i = 0; i < txt.length; i++) {
-							let str = '<option value='+txt[i]['id']+'>'
-									+ txt[i]['name'] + ','
-									+ txt[i]['room_type'] + ','
-									+ txt[i]['howmany'] + ','
-									+ txt[i]['howmuch'] + ','
-									+ txt[i]['type_name'] + '</option>';
-							$('#selRoom').append(str);
-						}
+$(document)
+.ready(function() {
+		$.ajax({url : "/project/roomlist",
+				data : {},
+				datatype : 'json',
+				method : 'get',
+				beforeSend : function() {
+				},
+				success : function(txt) {
+					console.log(txt);
+					for (i = 0; i < txt.length; i++) {
+						let str = '<option value='+txt[i]['id']+'>'
+								+ txt[i]['name'] + ','
+								+ txt[i]['room_type'] + ','
+								+ txt[i]['howmany'] + ','
+								+ txt[i]['howmuch'] + ','
+								+ txt[i]['type_name'] + '</option>';
+						$('#selRoom').append(str);
 					}
-				});
-				$.ajax({
-					url : "/project/typelist",
-					data : {},
-					datatype : 'json',
-					method : 'get',
-					beforeSend : function() {
-					},
-					success : function(txt) {
-						console.log(txt);
-						for (i = 0; i < txt.length; i++) {
-							let str = '<option value='+txt[i]['type_code']+'>'
-									+ txt[i]['type_name'] + '</option>';
-							$('#type').append(str);
-						}
-					}
-				});
-			}).on(
-			'submit',
-			'#frmAddRoom',
-			function() {
-				if ($('input[name=name]').val() == ''
-						|| $('input[name=type]').val() == ''
-						|| $('input[name=howmany]').val() == ''
-						|| $('input[name=howmuch]').val() == '') {
-					alert('모든 값이 입력 되어야 합니다.');
-					return false;
 				}
-				return true;
-			}).on('click', '#btnDelete', function() {
-		let url = "/project/delInfo?id=" + $('#id').val();
-		console.log(url);
-		document.location = url;
-		return false;
-	}).on('click', '#btnPlus', function() {
-		document.location = '/project/roomtype';
-		return false;
-	}).on('click', '#selRoom option', function() {
-		console.log($(this).val() + ',' + $(this).text());
-		$('#id').val($(this).val());
-		let str = $(this).text();
-		let ar = str.split(',');
-		$('input[name=name]').val($.trim(ar[0]));
-		$('input[name=howmany]').val($.trim(ar[2]));
-		$('input[name=howmuch]').val($.trim(ar[3]));
-		let type = $.trim(ar[1]);
-		console.log('room_type [' + type + ']');
-		$('#room_type').val('');
-		$('#room_type option').each(function() {
-			if ($(this).text() == type) {
-				$(this).prop('selected', 'selected');
-				return false;
-			}
-		})
-		return false;
+			});
+		$.ajax({url : "/project/typelist",
+				data : {},
+				datatype : 'json',
+				method : 'get',
+				beforeSend : function() {
+				},
+				success : function(txt) {
+					console.log(txt);
+					for (i = 0; i < txt.length; i++) {
+						let str = '<option value='+txt[i]['type_code']+'>'
+								+ txt[i]['type_name'] + '</option>';
+						$('#type').append(str);
+					}
+				}
+			});
+})
+.on('submit','#frmAddRoom',function() {
+	if ($('input[name=name]').val() == ''
+		&& $('input[name=howmany]').val() == ''
+		&& $('input[name=howmuch]').val() == '') {
+			alert('모든 값이 입력 되어야 합니다.');
+			return false;
+		}
+	return true;
+})
+.on('click', '#btnDelete', function() {
+	let url = "/project/delInfo?id=" + $('#id').val();
+	console.log(url);
+	document.location = url;
+	return false;
+})
+.on('click', '#btnPlus', function() {
+	document.location = '/project/roomtype';
+	return false;
+})
+.on('click', '#selRoom option', function() {
+	console.log($(this).val() + ',' + $(this).text());
+	$('#id').val($(this).val());
+	let str = $(this).text();
+	let ar = str.split(',');
+	$('input[name=name]').val($.trim(ar[0]));
+	$('input[name=howmany]').val($.trim(ar[2]));
+	$('input[name=howmuch]').val($.trim(ar[3]));
+	let type = $.trim(ar[1]);
+	console.log('room_type [' + type + ']');
+	$('#room_type').val('');
+	$('#room_type option').each(function() {
+		if ($(this).text() == type) {
+			$(this).prop('selected', 'selected');
+			return false;
+		}
 	})
+		return false;
+})
 </script>

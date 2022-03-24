@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 	<div class="top_header fixed">
 		<form name="frm" action="/project/logout" method="POST">
 			<input type="hidden" name="userid" value="${userid}">
@@ -26,13 +27,14 @@
 		<h1 class="logo"><a href="/project">LOGO</a></h1>
 		<ul class="fixed">
 			<li>
-				<a href="/project/room">객실소개</a>
-<!-- 				<ul class="sub_nav"> -->
-<!-- 					<li><a href="#">roomA</a></li> -->
-<!-- 					<li><a href="#">roomB</a></li> -->
-<!-- 					<li><a href="#">roomC</a></li> -->
-<!-- 					<li><a href="#">roomD</a></li> -->
-<!-- 				</ul> -->
+				<a class="nav-link dropdown-toggle" href="/project/room" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">객실소개</a>
+				<ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+<!-- 					<li><a class="dropdown-item" href="/project/room">roomA</a></li> -->
+<!-- 					<li><a class="dropdown-item" href="/project/room2">roomB</a></li> -->
+<!-- 					<li><a class="dropdown-item" href="/project/room3">roomC</a></li> -->
+<!-- 					<li><a class="dropdown-item" href="/project/room4">roomD</a></li> -->
+<!-- 					<li><a class="dropdown-item" href="/project/room5">roomE</a></li> -->
+				</ul>
 			</li>
 			<li><a href="#">예약안내</a></li>
 			<li>

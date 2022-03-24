@@ -19,11 +19,11 @@
     />
 </head>
 <style>
+.room_top{margin-top:100px;}
 .swiper {
 	flex-shrink:0;
-  	width: 500px;
+  	width: 650px;
   	margin-left:0;
-    margin-top:80px;
     background-size: contain;
     position:relative;
     transition-property:transform;
@@ -38,20 +38,19 @@
          position:relative;
       }
 .room_info {
-	font-size:25px;
+	font-size:1.5rem;
 }
 .Done {
 	border:1px solid black;
 	width:500px;
-	height:80px;
-	margin-left:870px;
-    margin-top:20px;
+	height:55px;
 }
 .table1 {
-	margin-left:900px;
-    margin-top:-500px;
-    width:600px;
+    width:500px;
     height:400px;
+}
+.table1 td:nth-child(2){
+	text-align:right;
 }
 .text1 {
 	margin-left:500px;
@@ -76,16 +75,16 @@
 .bath_room {
 	font-size:19px;
 	margin-left:800px;
-	margin-top:-150px;
+	margin-top:-117px;
 }
 .bath_room_list {
 	margin-left:800px;
-    margin-top:55px;
+    margin-top:50px;
 }
 .etc {
 	font-size:19px;
 	margin-left:1100px;
-	margin-top:-175px;
+	margin-top:-140px;
 }
 .etc_list {
 	margin-left:1100px;
@@ -107,7 +106,7 @@
 }
 .info_list {
 	margin-left:500px;
-	margin-top:-40px;
+	margin-top:-30px;
 }
 </style>
 <body>

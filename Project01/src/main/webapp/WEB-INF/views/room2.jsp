@@ -75,7 +75,7 @@
 .bath_room {
 	font-size:19px;
 	margin-left:800px;
-	margin-top:-147px;
+	margin-top:-117px;
 }
 .bath_room_list {
 	margin-left:800px;
@@ -84,7 +84,7 @@
 .etc {
 	font-size:19px;
 	margin-left:1100px;
-	margin-top:-170px;
+	margin-top:-140px;
 }
 .etc_list {
 	margin-left:1100px;
@@ -106,7 +106,7 @@
 }
 .info_list {
 	margin-left:500px;
-	margin-top:-40px;
+	margin-top:-30px;
 }
 </style>
 <body>

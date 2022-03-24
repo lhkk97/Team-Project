@@ -107,7 +107,7 @@ public class MController {
 	    	  int code=Integer.parseInt(strCode);
 	    	  room.upInfo(code,name,type,howmany,howmuch);
 	      }
-	      return "redirect:/roominfo";
+	      return "redirect:/manage";
 	}
 	@RequestMapping("/delInfo") //룸 delete
 	public String delInfo(HttpServletRequest hsr) {
@@ -115,6 +115,6 @@ public class MController {
 		
 		iRoom room=sqlSession.getMapper(iRoom.class);
 		room.delInfo(code);
-		return "redirect:/roominfo";
+		return "redirect:/manage";
 	}
 }
